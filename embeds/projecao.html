@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Projeção dos cadastros de templos religiosos em Fortaleza - DATADOC</title>
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.contentWindow.min.js" integrity="sha512-14SY6teTzhrLWeL55Q4uCyxr6GQOxF3pEoMxo2mBxXwPRikdMtzKMYWy2B5Lqjr6PHHoGOxZgPaxUYKQrSmu0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body>
+<div id="observablehq-title-3ba40be1"></div>
+<div id="observablehq-subtitle-3ba40be1"></div>
+<div id="observablehq-viewof-time-3ba40be1"></div>
+<div id="observablehq-chartx-3ba40be1"></div>
+<div id="observablehq-fonte-3ba40be1"></div>
+
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+import define from "https://api.observablehq.com/d/e869886203f5e199.js?v=3";
+new Runtime().module(define, name => {
+  if (name === "chartx") return new Inspector(document.querySelector("#observablehq-chartx-3ba40be1"));
+  if (name === "subtitle") return new Inspector(document.querySelector("#observablehq-subtitle-3ba40be1"));
+  if (name === "viewof time") return new Inspector(document.querySelector("#observablehq-viewof-time-3ba40be1"));
+  if (name === "title") return new Inspector(document.querySelector("#observablehq-title-3ba40be1"));
+  if (name === "fonte") return new Inspector(document.querySelector("#observablehq-fonte-3ba40be1"));
+  return ["legenda","filteredPoints","cumulative_count","last","pct","cont","last2","cont2","bairros","bairros_count","taxa_templos","max","colorScale","sortedBairros"].includes(name);
+});
+</script>
+</body>
+</html>
