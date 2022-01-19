@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Templos religiosos por bairro de Fortaleza - DATADOC</title>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.contentWindow.min.js" integrity="sha512-14SY6teTzhrLWeL55Q4uCyxr6GQOxF3pEoMxo2mBxXwPRikdMtzKMYWy2B5Lqjr6PHHoGOxZgPaxUYKQrSmu0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body>
+
+<div id="observablehq-title-1a265089"></div>
+<div id="observablehq-viewof-selecao_categorias-1a265089"></div>
+<div id="observablehq-viewof-title_vis-1a265089"></div>
+<div id="observablehq-viewof-selected_contribuinte-1a265089"></div>
+<div id="observablehq-viewof-selected_bairros-1a265089"></div>
+<div id="observablehq-mapDiv-1a265089"></div>
+<div id="observablehq-fonte-1a265089"></div>
+
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+import define from "https://api.observablehq.com/d/b3171e61483578e6.js?v=3";
+new Runtime().module(define, name => {
+  if (name === "mapDiv") return new Inspector(document.querySelector("#observablehq-mapDiv-1a265089"));
+  if (name === "title") return new Inspector(document.querySelector("#observablehq-title-1a265089"));
+  if (name === "viewof selecao_categorias") return new Inspector(document.querySelector("#observablehq-viewof-selecao_categorias-1a265089"));
+  if (name === "viewof title_vis") return new Inspector(document.querySelector("#observablehq-viewof-title_vis-1a265089"));
+  if (name === "viewof selected_contribuinte") return new Inspector(document.querySelector("#observablehq-viewof-selected_contribuinte-1a265089"));
+  if (name === "viewof selected_bairros") return new Inspector(document.querySelector("#observablehq-viewof-selected_bairros-1a265089"));
+  if (name === "fonte") return new Inspector(document.querySelector("#observablehq-fonte-1a265089"));
+  return ["filteredPoints","dots","contribuintes","uniq_contribuintes","contribuintes_count","bairros","bairros_count","taxa_templos","sorted_bairros_taxa_templos","colorScale","sortedBairros","categorias_ativas","categorias_count","sortedCategorias"].includes(name);
+});
+</script>
+
+</body>
+</html>
