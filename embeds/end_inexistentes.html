@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Endereços inexistentes - Sefin</title>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.contentWindow.min.js" integrity="sha512-14SY6teTzhrLWeL55Q4uCyxr6GQOxF3pEoMxo2mBxXwPRikdMtzKMYWy2B5Lqjr6PHHoGOxZgPaxUYKQrSmu0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body>
+
+<div id="observablehq-viewof-selected_contribuinte-ca1010ee"></div>
+<br>
+<div id="observablehq-mapDiv-ca1010ee"></div>
+<div id="observablehq-fonte-ca1010ee"></div>
+
+
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+import define from "https://api.observablehq.com/d/dcc8e39fb89361bc.js?v=3";
+new Runtime().module(define, name => {
+  if (name === "mapDiv") return new Inspector(document.querySelector("#observablehq-mapDiv-ca1010ee"));
+  if (name === "fonte") return new Inspector(document.querySelector("#observablehq-fonte-ca1010ee"));
+  if (name === "viewof selected_contribuinte") return new Inspector(document.querySelector("#observablehq-viewof-selected_contribuinte-ca1010ee"));
+  return ["dots"].includes(name);
+});
+</script>
+
+</body>
+</html>
