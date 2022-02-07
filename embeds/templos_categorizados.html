@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Templos religiosos em Fortaleza SEFIN Categorizados -  DATADOC</title>
+
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.contentWindow.min.js" integrity="sha512-14SY6teTzhrLWeL55Q4uCyxr6GQOxF3pEoMxo2mBxXwPRikdMtzKMYWy2B5Lqjr6PHHoGOxZgPaxUYKQrSmu0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+<body>
+
+<!-- <div id="observablehq-title-b91ed0aa"></div> -->
+<div id="observablehq-Buttons-b91ed0aa"></div>
+<br>
+
+<div id="observablehq-viewof-selected_templo-b91ed0aa"></div><br>
+<div id="observablehq-chart-b91ed0aa"></div>
+<br>
+<div id="observablehq-fonte-b91ed0aa"></div>
+
+
+<script type="module">
+import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+import define from "https://api.observablehq.com/d/9f5e21dfd4bb04d4.js?v=3";
+new Runtime().module(define, name => {
+  if (name === "chart") return new Inspector(document.querySelector("#observablehq-chart-b91ed0aa"));
+  if (name === "Buttons") return new Inspector(document.querySelector("#observablehq-Buttons-b91ed0aa"));
+  // if (name === "title") return new Inspector(document.querySelector("#observablehq-title-b91ed0aa"));
+  if (name === "viewof selected_templo") return new Inspector(document.querySelector("#observablehq-viewof-selected_templo-b91ed0aa"));
+  if (name === "fonte") return new Inspector(document.querySelector("#observablehq-fonte-b91ed0aa"));
+});
+</script>
+
+</body>
+</html>
