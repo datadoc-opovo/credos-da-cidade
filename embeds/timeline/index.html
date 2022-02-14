@@ -157,9 +157,9 @@
         position: absolute;
         z-index: -1;
         top: 50%;
-        width: 100%;
-        border: 1px solid #000000;
-        border-bottom: 1px solid black;
+        width: 90%;
+        left: 5%;
+        border: 1px solid #918989;
       }
 
       .owl-next,
@@ -188,18 +188,22 @@
         fill: #666;
       }
 
-      .owl-prev:hover .icon-circle,
-      .owl-next:hover .icon-circle {
+      .owl-prev:not(.disabled):hover .icon-circle,
+      .owl-next:not(.disabled):hover .icon-circle {
         fill: #319ac1;
       }
 
-      .owl-prev:hover .icon-arrow,
-      .owl-next:hover .icon-arrow {
+      .owl-prev:not(.disabled):hover .icon-arrow,
+      .owl-next:not(.disabled):hover .icon-arrow {
         fill: #fff;
       }
 
+      .disabled {
+        cursor: initial !important;
+      }
+
       .description-wrapper {
-        max-width: 43.5rem;
+        max-width: 60rem;
         padding: 0 1rem;
       }
 
@@ -215,11 +219,16 @@
 
       .description {
         font-size: 2rem;
+        line-height: 2.7rem;
       }
 
       .description-info {
         line-height: 2.7rem;
         margin-top: 1.2rem;
+      }
+
+      .owl-carousel {
+        margin-bottom: 3rem;
       }
 
       .owl-carousel::before {
@@ -402,17 +411,14 @@
             desespeêro".
           </p>
           <p class="description-info">
-            <strong>Bairro / Localização do acontecimento: </strong>
+            <strong>Local: </strong>
             <span id="localizacao">Arraial Moura Brasil</span><br />
-            <strong>Caderno: </strong>
-            <span id="caderno">Primeiro Caderno</span><br />
             <strong>Religião: </strong
             ><span id="religiao">Candomblé/Umbanda/Macumba</span> <br />
             <strong>Nº de Vítimas: </strong><span id="vitimas">11</span>
             <br />
             <strong> Raça das vítimas: </strong
             ><span id="raca">Não identificado</span> <br />
-            <strong>Condenações: </strong><span id="condenacoes">11</span>
           </p>
         </div>
       </div>
@@ -727,11 +733,9 @@
                 ano,
                 resumo,
                 localizacao,
-                caderno,
                 vitimas,
                 religiao,
                 raca,
-                condenacoes,
               } = materia;
               populateMateria(materia);
             }
@@ -742,21 +746,17 @@
           ano,
           resumo,
           localizacao,
-          caderno,
           vitimas,
           religiao,
           raca,
-          condenacoes,
         }) {
           document.querySelector("#titulo").textContent = titulo;
           document.querySelector("#ano").textContent = ano;
           document.querySelector("#resumo").textContent = resumo;
           document.querySelector("#localizacao").textContent = localizacao;
-          document.querySelector("#caderno").textContent = caderno;
           document.querySelector("#vitimas").textContent = vitimas;
           document.querySelector("#religiao").textContent = religiao;
           document.querySelector("#raca").textContent = raca;
-          document.querySelector("#condenacoes").textContent = condenacoes;
         }
       });
     </script>
