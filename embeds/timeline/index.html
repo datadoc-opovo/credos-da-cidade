@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css" />
+    <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Inline CSS -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 62.5%;
+      }
+
+      body {
+        font-size: 1.6rem;
+        font-family: "Roboto", sans-serif;
+      }
+
+      .align-center {
+        display: grid;
+        place-items: center;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 11rem 0;
+      }
+
+      /* Adicionando margem no topo do container para não cortar a imagem do jornal quando o transform for acionado */
+      .owl-stage {
+        margin-top: 3rem;
+      }
+
+      .slide-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .image-wrapper {
+        position: relative;
+      }
+
+      .slider-image {
+        transition: 1s;
+        width: 29rem !important;
+      }
+
+      .owl-item {
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+      }
+
+      .owl-item.active.center .slider-image {
+        transform: translateY(-10px);
+      }
+
+      .owl-item:not(.active.center) .slider-image {
+        opacity: 0.4;
+        transform: scale(0.7);
+        transition: all 1s;
+      }
+
+      .timeline-wrapper {
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+        position: absolute;
+        top: calc(46% + 2px);
+        left: 43%;
+        z-index: 1;
+      }
+
+      .owl-item.active.center .timeline-wrapper {
+        -webkit-animation: fadeOut 1s;
+        animation: fadeOut 1s;
+        opacity: 0;
+      }
+
+      .date {
+        font-weight: bold;
+      }
+
+      .elipse {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #319ac1;
+        margin-bottom: 1.1rem;
+      }
+
+      /* "Animação" para as datas que ficam no jornal  */
+
+      @-webkit-keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @-webkit-keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+
+      .line {
+        position: absolute;
+        z-index: -1;
+        top: 50%;
+        width: 100%;
+        border: 1px solid #000000;
+        border-bottom: 1px solid black;
+      }
+
+      .owl-next,
+      .owl-prev {
+        position: absolute;
+        top: 46%;
+        width: 40px;
+        height: 40px;
+      }
+
+      .owl-prev {
+        left: 5%;
+      }
+      .owl-next {
+        right: 5%;
+      }
+
+      /* Fiz o gerenciamento de estado dos icones direto no SVG, pois fui informado de que o componente vai ser embedado diretamente em um iframe */
+      .owl-prev.disabled .icon-circle,
+      .owl-next.disabled .icon-circle {
+        fill: #999;
+      }
+
+      .owl-prev.disabled .icon-arrow,
+      .owl-next.disabled .icon-arrow {
+        fill: #666;
+      }
+
+      .owl-prev:hover .icon-circle,
+      .owl-next:hover .icon-circle {
+        fill: #319ac1;
+      }
+
+      .owl-prev:hover .icon-arrow,
+      .owl-next:hover .icon-arrow {
+        fill: #fff;
+      }
+
+      .description-wrapper {
+        max-width: 42.5rem;
+        padding: 0 4rem;
+      }
+
+      .description-date {
+        font-weight: bold;
+        font-size: 2.4rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .title {
+        margin-bottom: 1rem;
+      }
+
+      .description {
+        font-size: 2rem;
+      }
+
+      .description-info {
+        line-height: 2.7rem;
+        margin-top: 1.2rem;
+      }
+    </style>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <article>
+      <div class="container">
+        <div class="owl-carousel">
+          <div id="1" class="slide-wrapper item">
+            <div class="image-wrapper">
+              <div class="timeline-wrapper align-center">
+                <div class="elipse"></div>
+                <span class="date">1934</span>
+              </div>
+              <img class="slider-image" src="./jornal.png" alt="" />
+            </div>
+          </div>
+          <div id="2" class="slide-wrapper item">
+            <div class="image-wrapper">
+              <div class="timeline-wrapper align-center">
+                <div class="elipse"></div>
+                <span class="date">1935</span>
+              </div>
+              <img class="slider-image" src="./jornal.png" alt="" />
+            </div>
+          </div>
+          <div id="3" class="slide-wrapper item">
+            <div class="image-wrapper">
+              <div class="timeline-wrapper align-center">
+                <div class="elipse"></div>
+                <span class="date">1935</span>
+              </div>
+              <img class="slider-image" src="./jornal.png" alt="" />
+            </div>
+          </div>
+          <div id="4" class="slide-wrapper item">
+            <div class="image-wrapper">
+              <div class="timeline-wrapper align-center">
+                <div class="elipse"></div>
+                <span class="date">1938</span>
+              </div>
+              <img class="slider-image" src="./jornal.png" alt="" />
+            </div>
+          </div>
+          <div id="5" class="slide-wrapper item">
+            <div class="image-wrapper">
+              <div class="timeline-wrapper align-center">
+                <div class="elipse"></div>
+                <span class="date">1939</span>
+              </div>
+              <img class="slider-image" src="./jornal.png" alt="" />
+            </div>
+          </div>
+          <div id="6" class="slide-wrapper item">
+            <div class="image-wrapper">
+              <div class="timeline-wrapper align-center">
+                <div class="elipse"></div>
+                <span class="date">1939</span>
+              </div>
+              <img class="slider-image" src="./jornal.png" alt="" />
+            </div>
+          </div>
+          <div id="7" class="slide-wrapper item">
+            <div class="image-wrapper">
+              <div class="timeline-wrapper align-center">
+                <div class="elipse"></div>
+                <span class="date">1944</span>
+              </div>
+              <img class="slider-image" src="./jornal.png" alt="" />
+            </div>
+          </div>
+          <div id="8" class="slide-wrapper item">
+            <div class="image-wrapper">
+              <div class="timeline-wrapper align-center">
+                <div class="elipse"></div>
+                <span class="date">1949</span>
+              </div>
+              <img class="slider-image" src="./jornal.png" alt="" />
+            </div>
+          </div>
+          <div id="9" class="slide-wrapper item">
+            <div class="image-wrapper">
+              <div class="timeline-wrapper align-center">
+                <div class="elipse"></div>
+                <span class="date">1950</span>
+              </div>
+              <img class="slider-image" src="./jornal.png" alt="" />
+            </div>
+          </div>
+          <div id="10" class="slide-wrapper item">
+            <div class="image-wrapper">
+              <div class="timeline-wrapper align-center">
+                <div class="elipse"></div>
+                <span class="date">1951</span>
+              </div>
+              <img class="slider-image" src="./jornal.png" alt="" />
+            </div>
+          </div>
+          <div id="11" class="slide-wrapper item">
+            <div class="image-wrapper">
+              <div class="timeline-wrapper align-center">
+                <div class="elipse"></div>
+                <span class="date">1951</span>
+              </div>
+              <img class="slider-image" src="./jornal.png" alt="" />
+            </div>
+          </div>
+          <div id="12" class="slide-wrapper item">
+            <div class="image-wrapper">
+              <div class="timeline-wrapper align-center">
+                <div class="elipse"></div>
+                <span class="date">1957</span>
+              </div>
+              <img class="slider-image" src="./jornal.png" alt="" />
+            </div>
+          </div>
+          <div id="13" class="slide-wrapper item">
+            <div class="image-wrapper">
+              <div class="timeline-wrapper align-center">
+                <div class="elipse"></div>
+                <span class="date">1958</span>
+              </div>
+              <img class="slider-image" src="./jornal.png" alt="" />
+            </div>
+          </div>
+          <div id="14" class="slide-wrapper item">
+            <div class="image-wrapper">
+              <div class="timeline-wrapper align-center">
+                <div class="elipse"></div>
+                <span class="date">1960</span>
+              </div>
+              <img class="slider-image" src="./jornal.png" alt="" />
+            </div>
+          </div>
+          <div id="15" class="slide-wrapper item">
+            <div class="image-wrapper">
+              <div class="timeline-wrapper align-center">
+                <div class="elipse"></div>
+                <span class="date">1967</span>
+              </div>
+              <img class="slider-image" src="./jornal.png" alt="" />
+            </div>
+          </div>
+          <div id="16" class="slide-wrapper item">
+            <div class="image-wrapper">
+              <div class="timeline-wrapper align-center">
+                <div class="elipse"></div>
+                <span class="date">1979</span>
+              </div>
+              <img class="slider-image" src="./jornal.png" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="description-wrapper">
+          <span id="ano" class="description-date align-center">1934</span>
+          <h2 id="titulo" class="title">Onze pessoas presas num Catimbó</h2>
+          <p id="resumo" class="description">
+            Onze pessoas foram presas na casa de Dona Maria de Holanda Alvez
+            quando esta realizada uma cerimonia de cura de uma amiga. A policia
+            recebeu a denuncia do um vizinho e foi ao local onde todos foram
+            presos e conduzidos a delegacia junto com os pertences e apetrechos
+            associados a pratica. Vale ressaltar que nessa materia o reporter
+            associa a religião a uma "altivez pagã, filha da ingnorância e do
+            desespeêro".
+          </p>
+          <p class="description-info">
+            <strong>Bairro / Localização do acontecimento: </strong>
+            <span id="localizacao">Arraial Moura Brasil</span><br />
+            <strong>Caderno: </strong>
+            <span id="caderno">Primeiro Caderno</span><br />
+            <strong>Religião: </strong
+            ><span id="religiao">Candomblé/Umbanda/Macumba</span> <br />
+            <strong>Nº de Vítimas: </strong><span id="vitimas">11</span>
+            <br />
+            <strong> Raça das vítimas: </strong
+            ><span id="raca">Não identificado</span> <br />
+            <strong>Condenações: </strong><span id="condenacoes">11</span>
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+      integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      $(document).ready(function () {
+        $(".owl-carousel").owlCarousel({
+          loop: false,
+          center: true,
+          nav: true,
+          navText: [
+            `<svg id="Grupo_7780" data-name="Grupo 7780" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+            <g id="Grupo_5624" data-name="Grupo 5624">
+              <circle id="Elipse_319-2" class="icon-circle" data-name="Elipse 319-2" cx="20" cy="20" r="20" fill="#fff"/>
+              <g id="Grupo_5607" data-name="Grupo 5607" transform="translate(13.666 11.498)">
+                <path id="Caminho_1376" class="icon-arrow" data-name="Caminho 1376" d="M1636.194,2737.613l.42-.42a1.906,1.906,0,0,0,0-2.7l-4.781-4.78,4.748-4.749a1.952,1.952,0,0,0,0-2.76l-.421-.422a1.952,1.952,0,0,0-2.761,0l-6.372,6.373a2.2,2.2,0,0,0,0,3.114l6.338,6.338A2,2,0,0,0,1636.194,2737.613Z" transform="translate(-1626.382 -2721.216)" fill="#1b406d"/>
+              </g>
+            </g>
+          </svg>`,
+            `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+            <g id="Grupo_7784" data-name="Grupo 7784" transform="translate(-210 -511)">
+              <g id="Grupo_5624" data-name="Grupo 5624" transform="translate(-50 -70)">
+                <circle id="Elipse_319-2" class="icon-circle" data-name="Elipse 319-2" cx="20" cy="20" r="20" transform="translate(260 581)" fill="#fff"/>
+                <g id="Grupo_5607" data-name="Grupo 5607" transform="translate(-1350.838 -2128.718)">
+                  <path id="Caminho_1376" class="icon-arrow" data-name="Caminho 1376" d="M1627.36,2737.613l-.42-.42a1.906,1.906,0,0,1,0-2.7l4.781-4.78-4.748-4.749a1.952,1.952,0,0,1,0-2.76l.421-.422a1.952,1.952,0,0,1,2.761,0l6.372,6.373a2.2,2.2,0,0,1,0,3.114l-6.338,6.338A2,2,0,0,1,1627.36,2737.613Z" fill="#1b406d"/>
+                </g>
+              </g>
+            </g>
+          </svg>`,
+          ],
+          navSpeed: 1000,
+          responsive: {
+            0: {
+              items: 1.5,
+            },
+            600: {
+              items: 3,
+            },
+            1000: {
+              items: 3.3,
+            },
+          },
+        });
+        $(".owl-nav").append("<div class='line'></div>");
+      });
+    </script>
+
+    <script>
+      // No design que a Maria me mandou somente as imagens ficam visíveis
+      // Como tive que usar o Owl Carousel para o slide, por questões de compatibilidade
+      // tive que gerar o texto de cada jornal de uma forma dinamica
+      // pois não descobri uma forma de fazer esse efeito com o Owl
+      $(document).ready(function () {
+        const definitivas = [
+          {
+            id: 1,
+            ano: "1934",
+            titulo: "Onze pessoas presas num Catimbó",
+            resumo:
+              'Onze pessoas foram presas na casa de Dona Maria de Holanda Alvez quando esta realizada uma cerimonia de cura de uma amiga. A policia recebeu a denuncia do um vizinho e foi ao local onde todos foram presos e conduzidos a delegacia junto com os pertences e apetrechos associados a pratica. Vale ressaltar que nessa materia o reporter associa a religião a uma "altivez pagã, filha da ingnorância e do desespeêro".',
+            localizacao: "Arraial Moura Brasil",
+            caderno: "Primeiro Caderno",
+            religiao: "Candomblé/Umbanda/Macumba",
+            vitimas: "11",
+            raca: "Não Identificado",
+            condenacoes: "Foram presos as 11 pessoas que estavam no local",
+          },
+
+          {
+            id: 2,
+            ano: "1935",
+            titulo:
+              "A Macumba em Fortaleza - Um antro de exploração á rua das trincheiras",
+            resumo:
+              'Reportagem denuncia uma suposta casa de feitiçaria conduzida por um homem chamado de Irmão Luiz (identificado como da raça negra na reportagem), que teria um jovem de 15 anos, branco, como seu serviçal sendo punido com chibatadas pelo Irmão Luiz. O texto não deixa claro a religião. Ora cita o Candomblé, hora cita que o Irmão Luiz lê os livros de Alan Kardec e aplica passes em nome de Jesus e da Virgem Maria. E ao final pede que a policia tome providencias em fechar o local, classificado pelo reporter como um "antro de perdição na cidade".',
+            localizacao: "Rua Conselheiro Liberato Barroso, 847 - Centro",
+            caderno: "Primeiro Caderno",
+            religiao: "Candomblé/Umbanda/Macumba",
+            vitimas: "1",
+            raca: "Negra",
+            condenacoes: "Não",
+          },
+
+          {
+            id: 3,
+            ano: "1935",
+            titulo:
+              "A Macumba em Fortaleza - Pregadores da Doutrina de Alan Kardek",
+            resumo:
+              "Vizinho denuncia o que a reportagem identifica como um congresso de feitceiros qeu estarai sendo realizado na Vila Monteiro. O barulho dos cantigos e batidas estarai incomodando os vizinhos. A policia foi acionada e as pessoas foram presas. Na reportagem cita o homem identificado como Irmão Luiz e novamente fala sobre o Espiritismo de Alan Kardek como sendo parte de Macumba",
+            localizacao: "Vila Monteiro / Barra do Ceará",
+            caderno: "Primeiro Caderno",
+            religiao: "Candomblé / Espiritismo",
+            vitimas: "Nao especifica",
+            raca: "Negra",
+            condenacoes: "Não especificado",
+          },
+
+          {
+            id: 4,
+            ano: "1938",
+            titulo:
+              "Não tenho mais esperanças de ver meu Filho - O cel. Pretinho está disiludido de que Onofre seja encontrado",
+            resumo:
+              "Um homem identificado como Negro Luiz é acusado de realizar Macumba em seu Botequim e de ter por meio de magia ocasionado morte de uma senhora por vingança. O titulo da reportagem falado desaparecimento de uma criança e que o pai não tinha mais esperanças de encontrar-la, porém parece não haver relação com o Negro Luiz ou insinua que o homem teria alguma ligação.",
+            localizacao: "Praia Formosa",
+            caderno: "Primeiro Caderno",
+            religiao: "Candomblé/Umbanda/Macumba",
+            vitimas: "Nao especifica",
+            raca: "Negra",
+            condenacoes: "Não especificado",
+          },
+          {
+            id: 5,
+            ano: "1939",
+            titulo: "Levanta-te Mineiro",
+            resumo:
+              "Oitenta pessoas assitiam a Macumba quando a Policia chegou. Foram efetuadas varias prisões.",
+            localizacao: "Pirambu",
+            caderno: "Primeiro Caderno",
+            religiao: "Candomblé/Umbanda/Macumba",
+            vitimas: "Varias pessoas presas",
+            raca: "Negra",
+            condenacoes: "Não especificado",
+          },
+          {
+            id: 6,
+            ano: "1939",
+            titulo: "Gente da Elite frequenta as sessões em Pirambu",
+            resumo:
+              '"Gente da elite de Fortaleza vai em automoveis de luxo, oferecer presentes a Mãe de Santo e receber os castigos corporais infligidos pelo ardiloso"',
+            localizacao: "Pirambu",
+            caderno: "Primeiro Caderno",
+            religiao: "Candomblé/Umbanda/Macumba",
+            vitimas: "Nao especifica",
+            raca: "Todas",
+            condenacoes: "Não especificado",
+          },
+          {
+            id: 7,
+            ano: "1944",
+            titulo: "Macumbeiros em ação no Arraial Moura Brasil",
+            resumo:
+              "Preso homem de 20 anos que afirmava ter curado cerca de 500 pessoas. Identificado como macumbeiro atuante nas periferias de Fortaleza. Foi preso acusado de cobrar importancias de 200 a 500 cruzeiros pelas curas, o que ele nega.",
+            localizacao: "Arraial Moura Brasil",
+            caderno: "Primeiro Caderno",
+            religiao: "Candomblé/Umbanda/Macumba",
+            vitimas: "1",
+            raca: "Não Identificado",
+            condenacoes: "Foi preso",
+          },
+          {
+            id: 8,
+            ano: "1949",
+            titulo: "Catimbó no Cemitério São João Batista",
+            resumo:
+              "Coveiros do cemiterio encontraram obejtos que seriam de trabalhos de macumba",
+            localizacao: "Centro",
+            caderno: "Primeiro Caderno",
+            religiao: "Candomblé/Umbanda/Macumba",
+            vitimas: "Nao especifica",
+            raca: "Não Identificado",
+            condenacoes: "Não especificado",
+          },
+          {
+            id: 9,
+            ano: "1950",
+            titulo: "Macumba na Barra do Ceará",
+            resumo:
+              'Investigador amador descobre uma "ingrizia" com todas as caracteristicas de macumba. A policia está empenhada em apurar o fato.',
+            localizacao: "Barra do Ceará",
+            caderno: "Primeiro Caderno",
+            religiao: "Candomblé/Umbanda/Macumba",
+            vitimas: "Nao especifica",
+            raca: "Não Identificado",
+            condenacoes: "Não especificado",
+          },
+          {
+            id: 10,
+            ano: "1951",
+            titulo: "Urubatan de Deus é o meu guia",
+            resumo:
+              "Centenas de pessoas comparecem diariamente a residencia do  Sr. João Almeida que cura tuberculose com leite e laranja e diz-se inimigo rancoroso dos macumbeiros",
+            localizacao: "Porangabussu",
+            caderno: "Primeiro Caderno",
+            religiao: "Não especificada",
+            vitimas: "Nao especifica",
+            raca: "Não Identificado",
+            condenacoes: "Não especificado",
+          },
+          {
+            id: 11,
+            ano: "1951",
+            titulo: "Ossada humana encontrada numa calçada da rua S. Paulo",
+            resumo:
+              '"Isso é macumba" dia ao reporter um operario - Desperta curiosidade o fato - A policia não tomou conhecimento',
+            localizacao: "Centro",
+            caderno: "Primeiro Caderno",
+            religiao: "Candomblé/Umbanda/Macumba",
+            vitimas: "Nao especifica",
+            raca: "Não Identificado",
+            condenacoes: "Não especificado",
+          },
+          {
+            id: 12,
+            ano: "1957",
+            titulo: "Surpreendida pela policia um Macumba em plena função",
+            resumo:
+              '"Presa em flagrante a macumbeira Maria Luisa de Lima - Apreendidos diversos apetrechos e fotografias de pessoas conhecidas - Curiosas receitas para matar"',
+            localizacao: "São Gerardo",
+            caderno: "Primeiro Caderno",
+            religiao: "Candomblé/Umbanda/Macumba",
+            vitimas: "1",
+            raca: "Não Identificado",
+            condenacoes: "Não especificado",
+          },
+          {
+            id: 13,
+            ano: "1958",
+            titulo: "Diz que não há macumba em sua casa",
+            resumo:
+              "Comparece a redação do OPOVO uma senhora afim de desmentir acusação publicada de que em sua residencia funcionaria um terreiro de macumba. A mulher se diz vitima de calunia e inveja. A polícia foi notificada.",
+            localizacao: "Moura Brasil",
+            caderno: "Primeiro Caderno",
+            religiao: "Candomblé/Umbanda/Macumba",
+            vitimas: "1",
+            raca: "Não Identificado",
+            condenacoes: "Não especificado",
+          },
+          {
+            id: 14,
+            ano: "1960",
+            titulo: "Ogum e seus adoradores foram parar no xadrez",
+            resumo:
+              "Um terreiro de macumba foi dissolvido pelas autoridades do distrito policial. Varios objetos próprios da prática foram encontrados",
+            localizacao: "Bela Vista",
+            caderno: "Primeiro Caderno",
+            religiao: "Candomblé/Umbanda/Macumba",
+            vitimas: "3",
+            raca: "Não Identificado",
+            condenacoes: "Não especificado",
+          },
+          {
+            id: 15,
+            ano: "1967",
+            titulo: "Macumbeiro morto misteriosamente com 18 facadas",
+            resumo:
+              "Homem identificado como Macumbeiro é encontrado morto no matagal na Barra do Ceará com 18 facadas e crime é tratado como mistério",
+            localizacao: "Barra do Ceará",
+            caderno: "Primeiro Caderno",
+            religiao: "Candomblé/Umbanda/Macumba",
+            vitimas: "1",
+            raca: "Não Identificado",
+            condenacoes: "Não especificado",
+          },
+          {
+            id: 16,
+            ano: "1979",
+            titulo: 'Um "despacho" completo no caminho do Prefeito',
+            resumo:
+              "A macumba foi encontrada pelo prefeito, assessores e vereadores, no canteiro de obras do Parque do Cocó",
+            localizacao: "Cocó",
+            caderno: "Primeiro Caderno",
+            religiao: "Candomblé/Umbanda/Macumba",
+            vitimas: "Não houve",
+            raca: "Não Identificado",
+            condenacoes: "Não especificado",
+          },
+        ];
+
+        const config = { attributes: true };
+        const observers = [];
+
+        function setObserver(target, index) {
+          const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+              console.log(mutation);
+              if ($(target).hasClass("center")) {
+                const jornalId = $(target).children().attr("id");
+                getMateria(jornalId);
+              }
+            });
+          });
+          observer.observe(target, config);
+          // para caso precise desconectar o observer
+          observers.push({ [index]: observer });
+        }
+
+        $(".owl-item").each((index, el) => {
+          setObserver(el, index);
+        });
+
+        function getMateria(id) {
+          for (materia of definitivas) {
+            if (materia.id == id) {
+              const {
+                titulo,
+                ano,
+                resumo,
+                localizacao,
+                caderno,
+                vitimas,
+                religiao,
+                raca,
+                condenacoes,
+              } = materia;
+              populateMateria(materia);
+            }
+          }
+        }
+        function populateMateria({
+          titulo,
+          ano,
+          resumo,
+          localizacao,
+          caderno,
+          vitimas,
+          religiao,
+          raca,
+          condenacoes,
+        }) {
+          document.querySelector("#titulo").textContent = titulo;
+          document.querySelector("#ano").textContent = ano;
+          document.querySelector("#resumo").textContent = resumo;
+          document.querySelector("#localizacao").textContent = localizacao;
+          document.querySelector("#caderno").textContent = caderno;
+          document.querySelector("#vitimas").textContent = vitimas;
+          document.querySelector("#religiao").textContent = religiao;
+          document.querySelector("#raca").textContent = raca;
+          document.querySelector("#condenacoes").textContent = condenacoes;
+        }
+      });
+    </script>
+  </body>
+</html>
