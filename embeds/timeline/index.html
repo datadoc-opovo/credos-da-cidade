@@ -407,17 +407,14 @@
             desespeêro".
           </p>
           <p class="description-info">
-            <strong>Bairro / Localização do acontecimento: </strong>
+            <strong>Local: </strong>
             <span id="localizacao">Arraial Moura Brasil</span><br />
-            <strong>Caderno: </strong>
-            <span id="caderno">Primeiro Caderno</span><br />
             <strong>Religião: </strong
             ><span id="religiao">Candomblé/Umbanda/Macumba</span> <br />
             <strong>Nº de Vítimas: </strong><span id="vitimas">11</span>
             <br />
             <strong> Raça das vítimas: </strong
             ><span id="raca">Não identificado</span> <br />
-            <strong>Condenações: </strong><span id="condenacoes">11</span>
           </p>
         </div>
       </div>
@@ -732,11 +729,9 @@
                 ano,
                 resumo,
                 localizacao,
-                caderno,
                 vitimas,
                 religiao,
                 raca,
-                condenacoes,
               } = materia;
               populateMateria(materia);
             }
@@ -747,21 +742,17 @@
           ano,
           resumo,
           localizacao,
-          caderno,
           vitimas,
           religiao,
           raca,
-          condenacoes,
         }) {
           document.querySelector("#titulo").textContent = titulo;
           document.querySelector("#ano").textContent = ano;
           document.querySelector("#resumo").textContent = resumo;
           document.querySelector("#localizacao").textContent = localizacao;
-          document.querySelector("#caderno").textContent = caderno;
           document.querySelector("#vitimas").textContent = vitimas;
           document.querySelector("#religiao").textContent = religiao;
           document.querySelector("#raca").textContent = raca;
-          document.querySelector("#condenacoes").textContent = condenacoes;
         }
       });
     </script>
