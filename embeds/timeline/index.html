@@ -188,14 +188,18 @@
         fill: #666;
       }
 
-      .owl-prev:hover .icon-circle,
-      .owl-next:hover .icon-circle {
+      .owl-prev:not(.disabled):hover .icon-circle,
+      .owl-next:not(.disabled):hover .icon-circle {
         fill: #319ac1;
       }
 
-      .owl-prev:hover .icon-arrow,
-      .owl-next:hover .icon-arrow {
+      .owl-prev:not(.disabled):hover .icon-arrow,
+      .owl-next:not(.disabled):hover .icon-arrow {
         fill: #fff;
+      }
+
+      .disabled {
+        cursor: initial !important;
       }
 
       .description-wrapper {
