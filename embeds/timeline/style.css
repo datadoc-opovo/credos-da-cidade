@@ -63,7 +63,7 @@ body {
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;
   position: absolute;
-  top: calc(46% + 2px);
+  top: calc(49% + 4px);
   left: 43%;
   z-index: 1;
 }
@@ -126,9 +126,9 @@ body {
   position: absolute;
   z-index: -1;
   top: 50%;
-  width: 100%;
-  border: 1px solid #000000;
-  border-bottom: 1px solid black;
+  width: 90%;
+  left: 5%;
+  border: 1px solid #918989;
 }
 
 .owl-next,
@@ -157,19 +157,23 @@ body {
   fill: #666;
 }
 
-.owl-prev:hover .icon-circle,
-.owl-next:hover .icon-circle {
+.owl-prev:not(.disabled):hover .icon-circle,
+.owl-next:not(.disabled):hover .icon-circle {
   fill: #319ac1;
 }
 
-.owl-prev:hover .icon-arrow,
-.owl-next:hover .icon-arrow {
+.owl-prev:not(.disabled):hover .icon-arrow,
+.owl-next:not(.disabled):hover .icon-arrow {
   fill: #fff;
 }
 
+.disabled {
+  cursor: initial !important;
+}
+
 .description-wrapper {
-  max-width: 42.5rem;
-  padding: 0 4rem;
+  max-width: 60rem;
+  padding: 0 1rem;
 }
 
 .description-date {
@@ -184,9 +188,103 @@ body {
 
 .description {
   font-size: 2rem;
+  line-height: 2.7rem;
 }
 
 .description-info {
   line-height: 2.7rem;
   margin-top: 1.2rem;
+}
+
+.owl-carousel {
+  margin-bottom: 3rem;
+}
+
+.owl-carousel::before {
+  width: 100%;
+  height: 100%;
+  content: "";
+  position: absolute;
+  z-index: -1;
+  opacity: 0.3;
+  background: url('https://mais.opovo.com.br/_midias/jpg/2022/02/01/credos_04_-18001296.jpg?') center center;
+}
+
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 10; 
+  padding-top: 10rem;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 100%;
+  max-width: 50rem;
+}
+
+.modal-content {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+.close {
+  position: absolute;
+  top: 5%;
+  right: 10%;
+  color: #f1f1f1;
+  font-size: 4rem;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+.js-open-modal {
+  position: absolute;
+  z-index: 2;
+  bottom: 5%;
+  right: 10%;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.js-open-modal:hover {
+  transform: scale(1.1);
+}
+
+.owl-item.active.center .js-open-modal {
+  -webkit-animation: fadein 1s;
+  animation: fadeIn 1s;
+  opacity: 1;
+}
+
+.owl-item:not(.active.center) .js-open-modal {
+  -webkit-animation: fadeOut .5s;
+  animation: fadeOut .5s;
+  opacity: 0;
 }

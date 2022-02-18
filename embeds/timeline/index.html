@@ -1,450 +1,695 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css" />
-    <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-      integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
-      integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
 
-    <!-- Inline CSS -->
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css" />
+  <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- <link rel="stylesheet" href="./style.css"> -->
 
-      html {
-        font-size: 62.5%;
-      }
+  <!-- Inline CSS -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      body {
-        font-size: 1.6rem;
-        font-family: "Roboto", sans-serif;
-      }
+    html {
+      font-size: 62.5%;
+    }
 
-      .align-center {
-        display: grid;
-        place-items: center;
-      }
+    body {
+      font-size: 1.6rem;
+      font-family: "Roboto", sans-serif;
+    }
 
-      .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 11rem 0;
-      }
+    .align-center {
+      display: grid;
+      place-items: center;
+    }
 
-      /* Adicionando margem no topo do container para não cortar a imagem do jornal quando o transform for acionado */
-      .owl-stage {
-        margin-top: 3rem;
-      }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 11rem 0;
+    }
 
-      .slide-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
+    /* Adicionando margem no topo do container para não cortar a imagem do jornal quando o transform for acionado */
+    .owl-stage {
+      margin-top: 3rem;
+    }
 
-      .image-wrapper {
-        position: relative;
-      }
+    .slide-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-      .slider-image {
-        transition: 1s;
-        width: 29rem !important;
-      }
+    .image-wrapper {
+      position: relative;
+    }
 
-      .owl-item {
-        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-      }
+    .slider-image {
+      transition: 1s;
+      width: 29rem !important;
+    }
 
-      .owl-item.active.center .slider-image {
-        transform: translateY(-10px);
-      }
+    .owl-item {
+      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    }
 
-      .owl-item:not(.active.center) .slider-image {
-        opacity: 0.4;
-        transform: scale(0.7);
-        transition: all 1s;
-      }
+    .owl-item.active.center .slider-image {
+      transform: translateY(-10px);
+    }
 
-      .timeline-wrapper {
-        -webkit-animation: fadeIn 1s;
-        animation: fadeIn 1s;
-        position: absolute;
-        top: calc(46% + 2px);
-        left: 43%;
-        z-index: 1;
-      }
+    .owl-item:not(.active.center) .slider-image {
+      opacity: 0.4;
+      transform: scale(0.7);
+      transition: all 1s;
+    }
 
-      .owl-item.active.center .timeline-wrapper {
-        -webkit-animation: fadeOut 1s;
-        animation: fadeOut 1s;
+    .timeline-wrapper {
+      -webkit-animation: fadeIn 1s;
+      animation: fadeIn 1s;
+      position: absolute;
+      top: calc(49% + 4px);
+      left: 43%;
+      z-index: 1;
+    }
+
+    .owl-item.active.center .timeline-wrapper {
+      -webkit-animation: fadeOut 1s;
+      animation: fadeOut 1s;
+      opacity: 0;
+    }
+
+    .date {
+      font-weight: bold;
+    }
+
+    .elipse {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #319ac1;
+      margin-bottom: 1.1rem;
+    }
+
+    /* "Animação" para as datas que ficam no jornal  */
+
+    @-webkit-keyframes fadeIn {
+      from {
         opacity: 0;
       }
 
-      .date {
-        font-weight: bold;
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
       }
 
-      .elipse {
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: #319ac1;
-        margin-bottom: 1.1rem;
+      to {
+        opacity: 1;
+      }
+    }
+
+    @-webkit-keyframes fadeOut {
+      from {
+        opacity: 1;
       }
 
-      /* "Animação" para as datas que ficam no jornal  */
-
-      @-webkit-keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
+      to {
+        opacity: 0;
       }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
       }
 
-      @-webkit-keyframes fadeOut {
-        from {
-          opacity: 1;
-        }
-        to {
-          opacity: 0;
-        }
+      to {
+        opacity: 0;
       }
-      @keyframes fadeOut {
-        from {
-          opacity: 1;
-        }
-        to {
-          opacity: 0;
-        }
+    }
+
+    .line {
+      position: absolute;
+      z-index: -1;
+      top: 50%;
+      width: 90%;
+      left: 5%;
+      border: 1px solid #918989;
+    }
+
+    .owl-next,
+    .owl-prev {
+      position: absolute;
+      top: 46%;
+      width: 40px;
+      height: 40px;
+    }
+
+    .owl-prev {
+      left: 5%;
+    }
+
+    .owl-next {
+      right: 5%;
+    }
+
+    /* Fiz o gerenciamento de estado dos icones direto no SVG, pois fui informado de que o componente vai ser embedado diretamente em um iframe */
+    .owl-prev.disabled .icon-circle,
+    .owl-next.disabled .icon-circle {
+      fill: #999;
+    }
+
+    .owl-prev.disabled .icon-arrow,
+    .owl-next.disabled .icon-arrow {
+      fill: #666;
+    }
+
+    .owl-prev:not(.disabled):hover .icon-circle,
+    .owl-next:not(.disabled):hover .icon-circle {
+      fill: #319ac1;
+    }
+
+    .owl-prev:not(.disabled):hover .icon-arrow,
+    .owl-next:not(.disabled):hover .icon-arrow {
+      fill: #fff;
+    }
+
+    .disabled {
+      cursor: initial !important;
+    }
+
+    .description-wrapper {
+      max-width: 60rem;
+      padding: 0 1rem;
+    }
+
+    .description-date {
+      font-weight: bold;
+      font-size: 2.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .title {
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      font-size: 2rem;
+      line-height: 2.7rem;
+    }
+
+    .description-info {
+      line-height: 2.7rem;
+      margin-top: 1.2rem;
+    }
+
+    .owl-carousel {
+      margin-bottom: 3rem;
+    }
+
+    .owl-carousel::before {
+      width: 100%;
+      height: 100%;
+      content: "";
+      position: absolute;
+      z-index: -1;
+      opacity: 0.3;
+      background: url('https://mais.opovo.com.br/_midias/jpg/2022/02/01/credos_04_-18001296.jpg?') center center;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      padding-top: 10rem;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0, 0, 0);
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      width: 100%;
+      max-width: 50rem;
+    }
+
+    .modal-content {
+      animation-name: zoom;
+      animation-duration: 0.6s;
+    }
+
+    @keyframes zoom {
+      from {
+        transform: scale(0)
       }
 
-      .line {
-        position: absolute;
-        z-index: -1;
-        top: 50%;
-        width: 90%;
-        left: 5%;
-        border: 1px solid #918989;
+      to {
+        transform: scale(1)
       }
+    }
 
-      .owl-next,
-      .owl-prev {
-        position: absolute;
-        top: 46%;
-        width: 40px;
-        height: 40px;
-      }
+    .close {
+      position: absolute;
+      top: 5%;
+      right: 10%;
+      color: #f1f1f1;
+      font-size: 4rem;
+      font-weight: bold;
+      transition: 0.3s;
+    }
 
-      .owl-prev {
-        left: 5%;
-      }
-      .owl-next {
-        right: 5%;
-      }
+    .close:hover,
+    .close:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
 
-      /* Fiz o gerenciamento de estado dos icones direto no SVG, pois fui informado de que o componente vai ser embedado diretamente em um iframe */
-      .owl-prev.disabled .icon-circle,
-      .owl-next.disabled .icon-circle {
-        fill: #999;
-      }
-
-      .owl-prev.disabled .icon-arrow,
-      .owl-next.disabled .icon-arrow {
-        fill: #666;
-      }
-
-      .owl-prev:not(.disabled):hover .icon-circle,
-      .owl-next:not(.disabled):hover .icon-circle {
-        fill: #319ac1;
-      }
-
-      .owl-prev:not(.disabled):hover .icon-arrow,
-      .owl-next:not(.disabled):hover .icon-arrow {
-        fill: #fff;
-      }
-
-      .disabled {
-        cursor: initial !important;
-      }
-
-      .description-wrapper {
-        max-width: 60rem;
-        padding: 0 1rem;
-      }
-
-      .description-date {
-        font-weight: bold;
-        font-size: 2.4rem;
-        margin-bottom: 0.8rem;
-      }
-
-      .title {
-        margin-bottom: 1rem;
-      }
-
-      .description {
-        font-size: 2rem;
-        line-height: 2.7rem;
-      }
-
-      .description-info {
-        line-height: 2.7rem;
-        margin-top: 1.2rem;
-      }
-
-      .owl-carousel {
-        margin-bottom: 3rem;
-      }
-
-      .owl-carousel::before {
+    @media only screen and (max-width: 700px) {
+      .modal-content {
         width: 100%;
-        height: 100%;
-        content: "";
-        position: absolute;
-        z-index: -1;
-        opacity: 0.3;
-        background: url('https://mais.opovo.com.br/_midias/jpg/2022/02/01/credos_04_-18001296.jpg?') center center;
       }
-    </style>
+    }
 
-    <title>Levantamento DATADOC - Timeline</title>
+    .js-open-modal {
+      position: absolute;
+      z-index: 2;
+      bottom: 5%;
+      right: 10%;
+      cursor: pointer;
+      transition: 0.1s;
+    }
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.contentWindow.min.js" integrity="sha512-14SY6teTzhrLWeL55Q4uCyxr6GQOxF3pEoMxo2mBxXwPRikdMtzKMYWy2B5Lqjr6PHHoGOxZgPaxUYKQrSmu0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    .js-open-modal:hover {
+      transform: scale(1.1);
+    }
+
+    .owl-item.active.center .js-open-modal {
+      -webkit-animation: fadein 1s;
+      animation: fadeIn 1s;
+      opacity: 1;
+    }
+
+    .owl-item:not(.active.center) .js-open-modal {
+      -webkit-animation: fadeOut .5s;
+      animation: fadeOut .5s;
+      opacity: 0;
+    }
+  </style>
+
+  <title>Levantamento DATADOC - Timeline</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.contentWindow.min.js"
+    integrity="sha512-14SY6teTzhrLWeL55Q4uCyxr6GQOxF3pEoMxo2mBxXwPRikdMtzKMYWy2B5Lqjr6PHHoGOxZgPaxUYKQrSmu0A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-  </head>
-  <body>
-    <article>
-      <div class="container">
-        <div class="owl-carousel">
-          <div id="1" class="slide-wrapper item">
-            <div class="image-wrapper">
-              <div class="timeline-wrapper align-center">
-                <div class="elipse"></div>
-                <span class="date">1934</span>
-              </div>
-              <img class="slider-image" src="./8-6-1934.png" alt="" />
+</head>
+
+<body>
+  <article>
+    <div class="container">
+      <div class="owl-carousel">
+        <div id="1" class="slide-wrapper item">
+          <div class="image-wrapper">
+            <div class="timeline-wrapper align-center">
+              <div class="elipse"></div>
+              <span class="date">1934</span>
             </div>
-          </div>
-          <div id="2" class="slide-wrapper item">
-            <div class="image-wrapper">
-              <div class="timeline-wrapper align-center">
-                <div class="elipse"></div>
-                <span class="date">1935</span>
-              </div>
-              <img class="slider-image" src="./23-2-1935.png" alt="" />
+            <div class="js-open-modal">
+              <?xml version="1.0" encoding="UTF-8"?>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px"
+                height="40px" viewBox="0 0 40 40" version="1.1">
+                <g id="surface1">
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
+                    d="M 37.523438 13.71875 C 38.890625 13.71875 40 12.609375 40 11.238281 L 40 2.476562 C 40 1.109375 38.890625 0 37.523438 0 L 28.761719 0 C 27.390625 0 26.28125 1.109375 26.28125 2.476562 C 26.28125 3.847656 27.390625 4.957031 28.761719 4.957031 L 31.539062 4.957031 L 20 16.496094 L 8.460938 4.957031 L 11.238281 4.957031 C 12.609375 4.957031 13.71875 3.847656 13.71875 2.476562 C 13.71875 1.109375 12.609375 0 11.238281 0 L 2.476562 0 C 1.109375 0 0 1.109375 0 2.476562 L 0 11.238281 C 0 12.609375 1.109375 13.71875 2.476562 13.71875 C 3.847656 13.71875 4.957031 12.609375 4.957031 11.238281 L 4.957031 8.460938 L 16.496094 20 L 4.957031 31.539062 L 4.957031 28.761719 C 4.957031 27.390625 3.847656 26.28125 2.476562 26.28125 C 1.109375 26.28125 0 27.390625 0 28.761719 L 0 37.523438 C 0 38.890625 1.109375 40 2.476562 40 L 11.238281 40 C 12.609375 40 13.71875 38.890625 13.71875 37.523438 C 13.71875 36.152344 12.609375 35.042969 11.238281 35.042969 L 8.460938 35.042969 L 20 23.503906 L 31.539062 35.042969 L 28.761719 35.042969 C 27.390625 35.042969 26.28125 36.152344 26.28125 37.523438 C 26.28125 38.890625 27.390625 40 28.761719 40 L 37.523438 40 C 38.890625 40 40 38.890625 40 37.523438 L 40 28.761719 C 40 27.390625 38.890625 26.28125 37.523438 26.28125 C 36.152344 26.28125 35.042969 27.390625 35.042969 28.761719 L 35.042969 31.539062 L 23.503906 20 L 35.042969 8.460938 L 35.042969 11.238281 C 35.042969 12.609375 36.152344 13.71875 37.523438 13.71875 Z M 37.523438 13.71875 " />
+                </g>
+              </svg>
             </div>
-          </div>
-          <div id="3" class="slide-wrapper item">
-            <div class="image-wrapper">
-              <div class="timeline-wrapper align-center">
-                <div class="elipse"></div>
-                <span class="date">1935</span>
-              </div>
-              <img class="slider-image" src="./1-3-1935.png" alt="" />
-            </div>
-          </div>
-          <div id="4" class="slide-wrapper item">
-            <div class="image-wrapper">
-              <div class="timeline-wrapper align-center">
-                <div class="elipse"></div>
-                <span class="date">1938</span>
-              </div>
-              <img class="slider-image" src="./14-3-1938.png" alt="" />
-            </div>
-          </div>
-          <div id="5" class="slide-wrapper item">
-            <div class="image-wrapper">
-              <div class="timeline-wrapper align-center">
-                <div class="elipse"></div>
-                <span class="date">1939</span>
-              </div>
-              <img class="slider-image" src="./19-7-1939.png" alt="" />
-            </div>
-          </div>
-          <div id="6" class="slide-wrapper item">
-            <div class="image-wrapper">
-              <div class="timeline-wrapper align-center">
-                <div class="elipse"></div>
-                <span class="date">1939</span>
-              </div>
-              <img class="slider-image" src="./21-7-1939.png" alt="" />
-            </div>
-          </div>
-          <div id="7" class="slide-wrapper item">
-            <div class="image-wrapper">
-              <div class="timeline-wrapper align-center">
-                <div class="elipse"></div>
-                <span class="date">1944</span>
-              </div>
-              <img class="slider-image" src="./11-12-1944.png" alt="" />
-            </div>
-          </div>
-          <div id="8" class="slide-wrapper item">
-            <div class="image-wrapper">
-              <div class="timeline-wrapper align-center">
-                <div class="elipse"></div>
-                <span class="date">1949</span>
-              </div>
-              <img class="slider-image" src="./18-8-1949.png" alt="" />
-            </div>
-          </div>
-          <div id="9" class="slide-wrapper item">
-            <div class="image-wrapper">
-              <div class="timeline-wrapper align-center">
-                <div class="elipse"></div>
-                <span class="date">1950</span>
-              </div>
-              <img class="slider-image" src="./4-9-1950.png" alt="" />
-            </div>
-          </div>
-          <div id="10" class="slide-wrapper item">
-            <div class="image-wrapper">
-              <div class="timeline-wrapper align-center">
-                <div class="elipse"></div>
-                <span class="date">1951</span>
-              </div>
-              <img class="slider-image" src="./3-2-1951.png" alt="" />
-            </div>
-          </div>
-          <div id="11" class="slide-wrapper item">
-            <div class="image-wrapper">
-              <div class="timeline-wrapper align-center">
-                <div class="elipse"></div>
-                <span class="date">1951</span>
-              </div>
-              <img class="slider-image" src="./9-7-1951.png" alt="" />
-            </div>
-          </div>
-          <div id="12" class="slide-wrapper item">
-            <div class="image-wrapper">
-              <div class="timeline-wrapper align-center">
-                <div class="elipse"></div>
-                <span class="date">1957</span>
-              </div>
-              <img class="slider-image" src="./26-6-1957.png" alt="" />
-            </div>
-          </div>
-          <div id="13" class="slide-wrapper item">
-            <div class="image-wrapper">
-              <div class="timeline-wrapper align-center">
-                <div class="elipse"></div>
-                <span class="date">1958</span>
-              </div>
-              <img class="slider-image" src="./22-5-1958.png" alt="" />
-            </div>
-          </div>
-          <div id="14" class="slide-wrapper item">
-            <div class="image-wrapper">
-              <div class="timeline-wrapper align-center">
-                <div class="elipse"></div>
-                <span class="date">1960</span>
-              </div>
-              <img class="slider-image" src="./20-7-1960.png" alt="" />
-            </div>
-          </div>
-          <div id="15" class="slide-wrapper item">
-            <div class="image-wrapper">
-              <div class="timeline-wrapper align-center">
-                <div class="elipse"></div>
-                <span class="date">1967</span>
-              </div>
-              <img class="slider-image" src="./30-3-1967.png" alt="" />
-            </div>
-          </div>
-          <div id="16" class="slide-wrapper item">
-            <div class="image-wrapper">
-              <div class="timeline-wrapper align-center">
-                <div class="elipse"></div>
-                <span class="date">1979</span>
-              </div>
-              <img class="slider-image" src="./12-8-1979.png" alt="" />
-            </div>
+            <img class="slider-image" data-src="./original/8-6-1934.png" src="./fachada/8-6-1934.jpg" alt="" />
           </div>
         </div>
-
-        <div class="description-wrapper">
-          <span id="ano" class="description-date align-center">1934</span>
-          <h2 id="titulo" class="title">Onze pessoas presas num Catimbó</h2>
-          <p id="resumo" class="description">
-            Onze pessoas foram presas na casa de Dona Maria de Holanda Alvez
-            quando esta realizada uma cerimonia de cura de uma amiga. A policia
-            recebeu a denuncia do um vizinho e foi ao local onde todos foram
-            presos e conduzidos a delegacia junto com os pertences e apetrechos
-            associados a pratica. Vale ressaltar que nessa materia o reporter
-            associa a religião a uma "altivez pagã, filha da ingnorância e do
-            desespeêro".
-          </p>
-          <p class="description-info">
-            <strong>Local: </strong>
-            <span id="localizacao">Arraial Moura Brasil</span><br />
-            <strong>Religião: </strong
-            ><span id="religiao">Candomblé/Umbanda/Macumba</span> <br />
-            <strong>Nº de Vítimas: </strong><span id="vitimas">11</span>
-            <br />
-            <strong> Raça das vítimas: </strong
-            ><span id="raca">Não identificado</span> <br />
-          </p>
+        <div id="2" class="slide-wrapper item">
+          <div class="image-wrapper">
+            <div class="timeline-wrapper align-center">
+              <div class="elipse"></div>
+              <span class="date">1935</span>
+            </div>
+            <div class="js-open-modal">
+              <?xml version="1.0" encoding="UTF-8"?>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px"
+                height="40px" viewBox="0 0 40 40" version="1.1">
+                <g id="surface1">
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
+                    d="M 37.523438 13.71875 C 38.890625 13.71875 40 12.609375 40 11.238281 L 40 2.476562 C 40 1.109375 38.890625 0 37.523438 0 L 28.761719 0 C 27.390625 0 26.28125 1.109375 26.28125 2.476562 C 26.28125 3.847656 27.390625 4.957031 28.761719 4.957031 L 31.539062 4.957031 L 20 16.496094 L 8.460938 4.957031 L 11.238281 4.957031 C 12.609375 4.957031 13.71875 3.847656 13.71875 2.476562 C 13.71875 1.109375 12.609375 0 11.238281 0 L 2.476562 0 C 1.109375 0 0 1.109375 0 2.476562 L 0 11.238281 C 0 12.609375 1.109375 13.71875 2.476562 13.71875 C 3.847656 13.71875 4.957031 12.609375 4.957031 11.238281 L 4.957031 8.460938 L 16.496094 20 L 4.957031 31.539062 L 4.957031 28.761719 C 4.957031 27.390625 3.847656 26.28125 2.476562 26.28125 C 1.109375 26.28125 0 27.390625 0 28.761719 L 0 37.523438 C 0 38.890625 1.109375 40 2.476562 40 L 11.238281 40 C 12.609375 40 13.71875 38.890625 13.71875 37.523438 C 13.71875 36.152344 12.609375 35.042969 11.238281 35.042969 L 8.460938 35.042969 L 20 23.503906 L 31.539062 35.042969 L 28.761719 35.042969 C 27.390625 35.042969 26.28125 36.152344 26.28125 37.523438 C 26.28125 38.890625 27.390625 40 28.761719 40 L 37.523438 40 C 38.890625 40 40 38.890625 40 37.523438 L 40 28.761719 C 40 27.390625 38.890625 26.28125 37.523438 26.28125 C 36.152344 26.28125 35.042969 27.390625 35.042969 28.761719 L 35.042969 31.539062 L 23.503906 20 L 35.042969 8.460938 L 35.042969 11.238281 C 35.042969 12.609375 36.152344 13.71875 37.523438 13.71875 Z M 37.523438 13.71875 " />
+                </g>
+              </svg>
+            </div>
+            <img class="slider-image" data-src="./original/23-2-1935.png" src="./fachada/23-2-1935.jpg" alt="" />
+          </div>
+        </div>
+        <div id="3" class="slide-wrapper item">
+          <div class="image-wrapper">
+            <div class="timeline-wrapper align-center">
+              <div class="elipse"></div>
+              <span class="date">1935</span>
+            </div>
+            <div class="js-open-modal">
+              <?xml version="1.0" encoding="UTF-8"?>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px"
+                height="40px" viewBox="0 0 40 40" version="1.1">
+                <g id="surface1">
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
+                    d="M 37.523438 13.71875 C 38.890625 13.71875 40 12.609375 40 11.238281 L 40 2.476562 C 40 1.109375 38.890625 0 37.523438 0 L 28.761719 0 C 27.390625 0 26.28125 1.109375 26.28125 2.476562 C 26.28125 3.847656 27.390625 4.957031 28.761719 4.957031 L 31.539062 4.957031 L 20 16.496094 L 8.460938 4.957031 L 11.238281 4.957031 C 12.609375 4.957031 13.71875 3.847656 13.71875 2.476562 C 13.71875 1.109375 12.609375 0 11.238281 0 L 2.476562 0 C 1.109375 0 0 1.109375 0 2.476562 L 0 11.238281 C 0 12.609375 1.109375 13.71875 2.476562 13.71875 C 3.847656 13.71875 4.957031 12.609375 4.957031 11.238281 L 4.957031 8.460938 L 16.496094 20 L 4.957031 31.539062 L 4.957031 28.761719 C 4.957031 27.390625 3.847656 26.28125 2.476562 26.28125 C 1.109375 26.28125 0 27.390625 0 28.761719 L 0 37.523438 C 0 38.890625 1.109375 40 2.476562 40 L 11.238281 40 C 12.609375 40 13.71875 38.890625 13.71875 37.523438 C 13.71875 36.152344 12.609375 35.042969 11.238281 35.042969 L 8.460938 35.042969 L 20 23.503906 L 31.539062 35.042969 L 28.761719 35.042969 C 27.390625 35.042969 26.28125 36.152344 26.28125 37.523438 C 26.28125 38.890625 27.390625 40 28.761719 40 L 37.523438 40 C 38.890625 40 40 38.890625 40 37.523438 L 40 28.761719 C 40 27.390625 38.890625 26.28125 37.523438 26.28125 C 36.152344 26.28125 35.042969 27.390625 35.042969 28.761719 L 35.042969 31.539062 L 23.503906 20 L 35.042969 8.460938 L 35.042969 11.238281 C 35.042969 12.609375 36.152344 13.71875 37.523438 13.71875 Z M 37.523438 13.71875 " />
+                </g>
+              </svg>
+            </div>
+            <img class="slider-image" data-src="./original/1-3-1935.png" src="./fachada/1-3-1935.jpg" alt="" />
+          </div>
+        </div>
+        <div id="4" class="slide-wrapper item">
+          <div class="image-wrapper">
+            <div class="timeline-wrapper align-center">
+              <div class="elipse"></div>
+              <span class="date">1938</span>
+            </div>
+            <div class="js-open-modal">
+              <?xml version="1.0" encoding="UTF-8"?>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px"
+                height="40px" viewBox="0 0 40 40" version="1.1">
+                <g id="surface1">
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
+                    d="M 37.523438 13.71875 C 38.890625 13.71875 40 12.609375 40 11.238281 L 40 2.476562 C 40 1.109375 38.890625 0 37.523438 0 L 28.761719 0 C 27.390625 0 26.28125 1.109375 26.28125 2.476562 C 26.28125 3.847656 27.390625 4.957031 28.761719 4.957031 L 31.539062 4.957031 L 20 16.496094 L 8.460938 4.957031 L 11.238281 4.957031 C 12.609375 4.957031 13.71875 3.847656 13.71875 2.476562 C 13.71875 1.109375 12.609375 0 11.238281 0 L 2.476562 0 C 1.109375 0 0 1.109375 0 2.476562 L 0 11.238281 C 0 12.609375 1.109375 13.71875 2.476562 13.71875 C 3.847656 13.71875 4.957031 12.609375 4.957031 11.238281 L 4.957031 8.460938 L 16.496094 20 L 4.957031 31.539062 L 4.957031 28.761719 C 4.957031 27.390625 3.847656 26.28125 2.476562 26.28125 C 1.109375 26.28125 0 27.390625 0 28.761719 L 0 37.523438 C 0 38.890625 1.109375 40 2.476562 40 L 11.238281 40 C 12.609375 40 13.71875 38.890625 13.71875 37.523438 C 13.71875 36.152344 12.609375 35.042969 11.238281 35.042969 L 8.460938 35.042969 L 20 23.503906 L 31.539062 35.042969 L 28.761719 35.042969 C 27.390625 35.042969 26.28125 36.152344 26.28125 37.523438 C 26.28125 38.890625 27.390625 40 28.761719 40 L 37.523438 40 C 38.890625 40 40 38.890625 40 37.523438 L 40 28.761719 C 40 27.390625 38.890625 26.28125 37.523438 26.28125 C 36.152344 26.28125 35.042969 27.390625 35.042969 28.761719 L 35.042969 31.539062 L 23.503906 20 L 35.042969 8.460938 L 35.042969 11.238281 C 35.042969 12.609375 36.152344 13.71875 37.523438 13.71875 Z M 37.523438 13.71875 " />
+                </g>
+              </svg>
+            </div>
+            <img class="slider-image" data-src="./original/14-3-1938.png" src="./fachada/14-3-1938.jpg" alt="" />
+          </div>
+        </div>
+        <div id="5" class="slide-wrapper item">
+          <div class="image-wrapper">
+            <div class="timeline-wrapper align-center">
+              <div class="elipse"></div>
+              <span class="date">1939</span>
+            </div>
+            <div class="js-open-modal">
+              <?xml version="1.0" encoding="UTF-8"?>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px"
+                height="40px" viewBox="0 0 40 40" version="1.1">
+                <g id="surface1">
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
+                    d="M 37.523438 13.71875 C 38.890625 13.71875 40 12.609375 40 11.238281 L 40 2.476562 C 40 1.109375 38.890625 0 37.523438 0 L 28.761719 0 C 27.390625 0 26.28125 1.109375 26.28125 2.476562 C 26.28125 3.847656 27.390625 4.957031 28.761719 4.957031 L 31.539062 4.957031 L 20 16.496094 L 8.460938 4.957031 L 11.238281 4.957031 C 12.609375 4.957031 13.71875 3.847656 13.71875 2.476562 C 13.71875 1.109375 12.609375 0 11.238281 0 L 2.476562 0 C 1.109375 0 0 1.109375 0 2.476562 L 0 11.238281 C 0 12.609375 1.109375 13.71875 2.476562 13.71875 C 3.847656 13.71875 4.957031 12.609375 4.957031 11.238281 L 4.957031 8.460938 L 16.496094 20 L 4.957031 31.539062 L 4.957031 28.761719 C 4.957031 27.390625 3.847656 26.28125 2.476562 26.28125 C 1.109375 26.28125 0 27.390625 0 28.761719 L 0 37.523438 C 0 38.890625 1.109375 40 2.476562 40 L 11.238281 40 C 12.609375 40 13.71875 38.890625 13.71875 37.523438 C 13.71875 36.152344 12.609375 35.042969 11.238281 35.042969 L 8.460938 35.042969 L 20 23.503906 L 31.539062 35.042969 L 28.761719 35.042969 C 27.390625 35.042969 26.28125 36.152344 26.28125 37.523438 C 26.28125 38.890625 27.390625 40 28.761719 40 L 37.523438 40 C 38.890625 40 40 38.890625 40 37.523438 L 40 28.761719 C 40 27.390625 38.890625 26.28125 37.523438 26.28125 C 36.152344 26.28125 35.042969 27.390625 35.042969 28.761719 L 35.042969 31.539062 L 23.503906 20 L 35.042969 8.460938 L 35.042969 11.238281 C 35.042969 12.609375 36.152344 13.71875 37.523438 13.71875 Z M 37.523438 13.71875 " />
+                </g>
+              </svg>
+            </div>
+            <img class="slider-image" data-src="./original/19-7-1939.png" src="./fachada/19-7-1939.jpg" alt="" />
+          </div>
+        </div>
+        <div id="6" class="slide-wrapper item">
+          <div class="image-wrapper">
+            <div class="timeline-wrapper align-center">
+              <div class="elipse"></div>
+              <span class="date">1939</span>
+            </div>
+            <div class="js-open-modal">
+              <?xml version="1.0" encoding="UTF-8"?>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px"
+                height="40px" viewBox="0 0 40 40" version="1.1">
+                <g id="surface1">
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
+                    d="M 37.523438 13.71875 C 38.890625 13.71875 40 12.609375 40 11.238281 L 40 2.476562 C 40 1.109375 38.890625 0 37.523438 0 L 28.761719 0 C 27.390625 0 26.28125 1.109375 26.28125 2.476562 C 26.28125 3.847656 27.390625 4.957031 28.761719 4.957031 L 31.539062 4.957031 L 20 16.496094 L 8.460938 4.957031 L 11.238281 4.957031 C 12.609375 4.957031 13.71875 3.847656 13.71875 2.476562 C 13.71875 1.109375 12.609375 0 11.238281 0 L 2.476562 0 C 1.109375 0 0 1.109375 0 2.476562 L 0 11.238281 C 0 12.609375 1.109375 13.71875 2.476562 13.71875 C 3.847656 13.71875 4.957031 12.609375 4.957031 11.238281 L 4.957031 8.460938 L 16.496094 20 L 4.957031 31.539062 L 4.957031 28.761719 C 4.957031 27.390625 3.847656 26.28125 2.476562 26.28125 C 1.109375 26.28125 0 27.390625 0 28.761719 L 0 37.523438 C 0 38.890625 1.109375 40 2.476562 40 L 11.238281 40 C 12.609375 40 13.71875 38.890625 13.71875 37.523438 C 13.71875 36.152344 12.609375 35.042969 11.238281 35.042969 L 8.460938 35.042969 L 20 23.503906 L 31.539062 35.042969 L 28.761719 35.042969 C 27.390625 35.042969 26.28125 36.152344 26.28125 37.523438 C 26.28125 38.890625 27.390625 40 28.761719 40 L 37.523438 40 C 38.890625 40 40 38.890625 40 37.523438 L 40 28.761719 C 40 27.390625 38.890625 26.28125 37.523438 26.28125 C 36.152344 26.28125 35.042969 27.390625 35.042969 28.761719 L 35.042969 31.539062 L 23.503906 20 L 35.042969 8.460938 L 35.042969 11.238281 C 35.042969 12.609375 36.152344 13.71875 37.523438 13.71875 Z M 37.523438 13.71875 " />
+                </g>
+              </svg>
+            </div>
+            <img class="slider-image" data-src="./original/21-7-1939.png" src="./fachada/21-7-1939.jpg" alt="" />
+          </div>
+        </div>
+        <div id="7" class="slide-wrapper item">
+          <div class="image-wrapper">
+            <div class="timeline-wrapper align-center">
+              <div class="elipse"></div>
+              <span class="date">1944</span>
+            </div>
+            <div class="js-open-modal">
+              <?xml version="1.0" encoding="UTF-8"?>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px"
+                height="40px" viewBox="0 0 40 40" version="1.1">
+                <g id="surface1">
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
+                    d="M 37.523438 13.71875 C 38.890625 13.71875 40 12.609375 40 11.238281 L 40 2.476562 C 40 1.109375 38.890625 0 37.523438 0 L 28.761719 0 C 27.390625 0 26.28125 1.109375 26.28125 2.476562 C 26.28125 3.847656 27.390625 4.957031 28.761719 4.957031 L 31.539062 4.957031 L 20 16.496094 L 8.460938 4.957031 L 11.238281 4.957031 C 12.609375 4.957031 13.71875 3.847656 13.71875 2.476562 C 13.71875 1.109375 12.609375 0 11.238281 0 L 2.476562 0 C 1.109375 0 0 1.109375 0 2.476562 L 0 11.238281 C 0 12.609375 1.109375 13.71875 2.476562 13.71875 C 3.847656 13.71875 4.957031 12.609375 4.957031 11.238281 L 4.957031 8.460938 L 16.496094 20 L 4.957031 31.539062 L 4.957031 28.761719 C 4.957031 27.390625 3.847656 26.28125 2.476562 26.28125 C 1.109375 26.28125 0 27.390625 0 28.761719 L 0 37.523438 C 0 38.890625 1.109375 40 2.476562 40 L 11.238281 40 C 12.609375 40 13.71875 38.890625 13.71875 37.523438 C 13.71875 36.152344 12.609375 35.042969 11.238281 35.042969 L 8.460938 35.042969 L 20 23.503906 L 31.539062 35.042969 L 28.761719 35.042969 C 27.390625 35.042969 26.28125 36.152344 26.28125 37.523438 C 26.28125 38.890625 27.390625 40 28.761719 40 L 37.523438 40 C 38.890625 40 40 38.890625 40 37.523438 L 40 28.761719 C 40 27.390625 38.890625 26.28125 37.523438 26.28125 C 36.152344 26.28125 35.042969 27.390625 35.042969 28.761719 L 35.042969 31.539062 L 23.503906 20 L 35.042969 8.460938 L 35.042969 11.238281 C 35.042969 12.609375 36.152344 13.71875 37.523438 13.71875 Z M 37.523438 13.71875 " />
+                </g>
+              </svg>
+            </div>
+            <img class="slider-image" data-src="./original/11-12-1944.png" src="./fachada/11-12-1944.jpg" alt="" />
+          </div>
+        </div>
+        <div id="8" class="slide-wrapper item">
+          <div class="image-wrapper">
+            <div class="timeline-wrapper align-center">
+              <div class="elipse"></div>
+              <span class="date">1949</span>
+            </div>
+            <div class="js-open-modal">
+              <?xml version="1.0" encoding="UTF-8"?>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px"
+                height="40px" viewBox="0 0 40 40" version="1.1">
+                <g id="surface1">
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
+                    d="M 37.523438 13.71875 C 38.890625 13.71875 40 12.609375 40 11.238281 L 40 2.476562 C 40 1.109375 38.890625 0 37.523438 0 L 28.761719 0 C 27.390625 0 26.28125 1.109375 26.28125 2.476562 C 26.28125 3.847656 27.390625 4.957031 28.761719 4.957031 L 31.539062 4.957031 L 20 16.496094 L 8.460938 4.957031 L 11.238281 4.957031 C 12.609375 4.957031 13.71875 3.847656 13.71875 2.476562 C 13.71875 1.109375 12.609375 0 11.238281 0 L 2.476562 0 C 1.109375 0 0 1.109375 0 2.476562 L 0 11.238281 C 0 12.609375 1.109375 13.71875 2.476562 13.71875 C 3.847656 13.71875 4.957031 12.609375 4.957031 11.238281 L 4.957031 8.460938 L 16.496094 20 L 4.957031 31.539062 L 4.957031 28.761719 C 4.957031 27.390625 3.847656 26.28125 2.476562 26.28125 C 1.109375 26.28125 0 27.390625 0 28.761719 L 0 37.523438 C 0 38.890625 1.109375 40 2.476562 40 L 11.238281 40 C 12.609375 40 13.71875 38.890625 13.71875 37.523438 C 13.71875 36.152344 12.609375 35.042969 11.238281 35.042969 L 8.460938 35.042969 L 20 23.503906 L 31.539062 35.042969 L 28.761719 35.042969 C 27.390625 35.042969 26.28125 36.152344 26.28125 37.523438 C 26.28125 38.890625 27.390625 40 28.761719 40 L 37.523438 40 C 38.890625 40 40 38.890625 40 37.523438 L 40 28.761719 C 40 27.390625 38.890625 26.28125 37.523438 26.28125 C 36.152344 26.28125 35.042969 27.390625 35.042969 28.761719 L 35.042969 31.539062 L 23.503906 20 L 35.042969 8.460938 L 35.042969 11.238281 C 35.042969 12.609375 36.152344 13.71875 37.523438 13.71875 Z M 37.523438 13.71875 " />
+                </g>
+              </svg>
+            </div>
+            <img class="slider-image" data-src="./original/18-8-1949.png" src="./fachada/18-8-1949.jpg" alt="" />
+          </div>
+        </div>
+        <div id="9" class="slide-wrapper item">
+          <div class="image-wrapper">
+            <div class="timeline-wrapper align-center">
+              <div class="elipse"></div>
+              <span class="date">1950</span>
+            </div>
+            <div class="js-open-modal">
+              <?xml version="1.0" encoding="UTF-8"?>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px"
+                height="40px" viewBox="0 0 40 40" version="1.1">
+                <g id="surface1">
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
+                    d="M 37.523438 13.71875 C 38.890625 13.71875 40 12.609375 40 11.238281 L 40 2.476562 C 40 1.109375 38.890625 0 37.523438 0 L 28.761719 0 C 27.390625 0 26.28125 1.109375 26.28125 2.476562 C 26.28125 3.847656 27.390625 4.957031 28.761719 4.957031 L 31.539062 4.957031 L 20 16.496094 L 8.460938 4.957031 L 11.238281 4.957031 C 12.609375 4.957031 13.71875 3.847656 13.71875 2.476562 C 13.71875 1.109375 12.609375 0 11.238281 0 L 2.476562 0 C 1.109375 0 0 1.109375 0 2.476562 L 0 11.238281 C 0 12.609375 1.109375 13.71875 2.476562 13.71875 C 3.847656 13.71875 4.957031 12.609375 4.957031 11.238281 L 4.957031 8.460938 L 16.496094 20 L 4.957031 31.539062 L 4.957031 28.761719 C 4.957031 27.390625 3.847656 26.28125 2.476562 26.28125 C 1.109375 26.28125 0 27.390625 0 28.761719 L 0 37.523438 C 0 38.890625 1.109375 40 2.476562 40 L 11.238281 40 C 12.609375 40 13.71875 38.890625 13.71875 37.523438 C 13.71875 36.152344 12.609375 35.042969 11.238281 35.042969 L 8.460938 35.042969 L 20 23.503906 L 31.539062 35.042969 L 28.761719 35.042969 C 27.390625 35.042969 26.28125 36.152344 26.28125 37.523438 C 26.28125 38.890625 27.390625 40 28.761719 40 L 37.523438 40 C 38.890625 40 40 38.890625 40 37.523438 L 40 28.761719 C 40 27.390625 38.890625 26.28125 37.523438 26.28125 C 36.152344 26.28125 35.042969 27.390625 35.042969 28.761719 L 35.042969 31.539062 L 23.503906 20 L 35.042969 8.460938 L 35.042969 11.238281 C 35.042969 12.609375 36.152344 13.71875 37.523438 13.71875 Z M 37.523438 13.71875 " />
+                </g>
+              </svg>
+            </div>
+            <img class="slider-image" data-src="./original/4-9-1950.png" src="./fachada/4-9-1950.jpg" alt="" />
+          </div>
+        </div>
+        <div id="10" class="slide-wrapper item">
+          <div class="image-wrapper">
+            <div class="timeline-wrapper align-center">
+              <div class="elipse"></div>
+              <span class="date">1951</span>
+            </div>
+            <div class="js-open-modal">
+              <?xml version="1.0" encoding="UTF-8"?>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px"
+                height="40px" viewBox="0 0 40 40" version="1.1">
+                <g id="surface1">
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
+                    d="M 37.523438 13.71875 C 38.890625 13.71875 40 12.609375 40 11.238281 L 40 2.476562 C 40 1.109375 38.890625 0 37.523438 0 L 28.761719 0 C 27.390625 0 26.28125 1.109375 26.28125 2.476562 C 26.28125 3.847656 27.390625 4.957031 28.761719 4.957031 L 31.539062 4.957031 L 20 16.496094 L 8.460938 4.957031 L 11.238281 4.957031 C 12.609375 4.957031 13.71875 3.847656 13.71875 2.476562 C 13.71875 1.109375 12.609375 0 11.238281 0 L 2.476562 0 C 1.109375 0 0 1.109375 0 2.476562 L 0 11.238281 C 0 12.609375 1.109375 13.71875 2.476562 13.71875 C 3.847656 13.71875 4.957031 12.609375 4.957031 11.238281 L 4.957031 8.460938 L 16.496094 20 L 4.957031 31.539062 L 4.957031 28.761719 C 4.957031 27.390625 3.847656 26.28125 2.476562 26.28125 C 1.109375 26.28125 0 27.390625 0 28.761719 L 0 37.523438 C 0 38.890625 1.109375 40 2.476562 40 L 11.238281 40 C 12.609375 40 13.71875 38.890625 13.71875 37.523438 C 13.71875 36.152344 12.609375 35.042969 11.238281 35.042969 L 8.460938 35.042969 L 20 23.503906 L 31.539062 35.042969 L 28.761719 35.042969 C 27.390625 35.042969 26.28125 36.152344 26.28125 37.523438 C 26.28125 38.890625 27.390625 40 28.761719 40 L 37.523438 40 C 38.890625 40 40 38.890625 40 37.523438 L 40 28.761719 C 40 27.390625 38.890625 26.28125 37.523438 26.28125 C 36.152344 26.28125 35.042969 27.390625 35.042969 28.761719 L 35.042969 31.539062 L 23.503906 20 L 35.042969 8.460938 L 35.042969 11.238281 C 35.042969 12.609375 36.152344 13.71875 37.523438 13.71875 Z M 37.523438 13.71875 " />
+                </g>
+              </svg>
+            </div>
+            <img class="slider-image" data-src="./original/3-2-1951.png" src="./fachada/3-2-1951.jpg" alt="" />
+          </div>
+        </div>
+        <div id="11" class="slide-wrapper item">
+          <div class="image-wrapper">
+            <div class="timeline-wrapper align-center">
+              <div class="elipse"></div>
+              <span class="date">1951</span>
+            </div>
+            <div class="js-open-modal">
+              <?xml version="1.0" encoding="UTF-8"?>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px"
+                height="40px" viewBox="0 0 40 40" version="1.1">
+                <g id="surface1">
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
+                    d="M 37.523438 13.71875 C 38.890625 13.71875 40 12.609375 40 11.238281 L 40 2.476562 C 40 1.109375 38.890625 0 37.523438 0 L 28.761719 0 C 27.390625 0 26.28125 1.109375 26.28125 2.476562 C 26.28125 3.847656 27.390625 4.957031 28.761719 4.957031 L 31.539062 4.957031 L 20 16.496094 L 8.460938 4.957031 L 11.238281 4.957031 C 12.609375 4.957031 13.71875 3.847656 13.71875 2.476562 C 13.71875 1.109375 12.609375 0 11.238281 0 L 2.476562 0 C 1.109375 0 0 1.109375 0 2.476562 L 0 11.238281 C 0 12.609375 1.109375 13.71875 2.476562 13.71875 C 3.847656 13.71875 4.957031 12.609375 4.957031 11.238281 L 4.957031 8.460938 L 16.496094 20 L 4.957031 31.539062 L 4.957031 28.761719 C 4.957031 27.390625 3.847656 26.28125 2.476562 26.28125 C 1.109375 26.28125 0 27.390625 0 28.761719 L 0 37.523438 C 0 38.890625 1.109375 40 2.476562 40 L 11.238281 40 C 12.609375 40 13.71875 38.890625 13.71875 37.523438 C 13.71875 36.152344 12.609375 35.042969 11.238281 35.042969 L 8.460938 35.042969 L 20 23.503906 L 31.539062 35.042969 L 28.761719 35.042969 C 27.390625 35.042969 26.28125 36.152344 26.28125 37.523438 C 26.28125 38.890625 27.390625 40 28.761719 40 L 37.523438 40 C 38.890625 40 40 38.890625 40 37.523438 L 40 28.761719 C 40 27.390625 38.890625 26.28125 37.523438 26.28125 C 36.152344 26.28125 35.042969 27.390625 35.042969 28.761719 L 35.042969 31.539062 L 23.503906 20 L 35.042969 8.460938 L 35.042969 11.238281 C 35.042969 12.609375 36.152344 13.71875 37.523438 13.71875 Z M 37.523438 13.71875 " />
+                </g>
+              </svg>
+            </div>
+            <img class="slider-image" data-src="./original/9-7-1951.png" src="./fachada/9-7-1951.jpg" alt="" />
+          </div>
+        </div>
+        <div id="12" class="slide-wrapper item">
+          <div class="image-wrapper">
+            <div class="timeline-wrapper align-center">
+              <div class="elipse"></div>
+              <span class="date">1957</span>
+            </div>
+            <div class="js-open-modal">
+              <?xml version="1.0" encoding="UTF-8"?>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px"
+                height="40px" viewBox="0 0 40 40" version="1.1">
+                <g id="surface1">
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
+                    d="M 37.523438 13.71875 C 38.890625 13.71875 40 12.609375 40 11.238281 L 40 2.476562 C 40 1.109375 38.890625 0 37.523438 0 L 28.761719 0 C 27.390625 0 26.28125 1.109375 26.28125 2.476562 C 26.28125 3.847656 27.390625 4.957031 28.761719 4.957031 L 31.539062 4.957031 L 20 16.496094 L 8.460938 4.957031 L 11.238281 4.957031 C 12.609375 4.957031 13.71875 3.847656 13.71875 2.476562 C 13.71875 1.109375 12.609375 0 11.238281 0 L 2.476562 0 C 1.109375 0 0 1.109375 0 2.476562 L 0 11.238281 C 0 12.609375 1.109375 13.71875 2.476562 13.71875 C 3.847656 13.71875 4.957031 12.609375 4.957031 11.238281 L 4.957031 8.460938 L 16.496094 20 L 4.957031 31.539062 L 4.957031 28.761719 C 4.957031 27.390625 3.847656 26.28125 2.476562 26.28125 C 1.109375 26.28125 0 27.390625 0 28.761719 L 0 37.523438 C 0 38.890625 1.109375 40 2.476562 40 L 11.238281 40 C 12.609375 40 13.71875 38.890625 13.71875 37.523438 C 13.71875 36.152344 12.609375 35.042969 11.238281 35.042969 L 8.460938 35.042969 L 20 23.503906 L 31.539062 35.042969 L 28.761719 35.042969 C 27.390625 35.042969 26.28125 36.152344 26.28125 37.523438 C 26.28125 38.890625 27.390625 40 28.761719 40 L 37.523438 40 C 38.890625 40 40 38.890625 40 37.523438 L 40 28.761719 C 40 27.390625 38.890625 26.28125 37.523438 26.28125 C 36.152344 26.28125 35.042969 27.390625 35.042969 28.761719 L 35.042969 31.539062 L 23.503906 20 L 35.042969 8.460938 L 35.042969 11.238281 C 35.042969 12.609375 36.152344 13.71875 37.523438 13.71875 Z M 37.523438 13.71875 " />
+                </g>
+              </svg>
+            </div>
+            <img class="slider-image" data-src="./original/26-6-1957.png" src="./fachada/26-6-1957.jpg" alt="" />
+          </div>
+        </div>
+        <div id="13" class="slide-wrapper item">
+          <div class="image-wrapper">
+            <div class="timeline-wrapper align-center">
+              <div class="elipse"></div>
+              <span class="date">1958</span>
+            </div>
+            <div class="js-open-modal">
+              <?xml version="1.0" encoding="UTF-8"?>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px"
+                height="40px" viewBox="0 0 40 40" version="1.1">
+                <g id="surface1">
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
+                    d="M 37.523438 13.71875 C 38.890625 13.71875 40 12.609375 40 11.238281 L 40 2.476562 C 40 1.109375 38.890625 0 37.523438 0 L 28.761719 0 C 27.390625 0 26.28125 1.109375 26.28125 2.476562 C 26.28125 3.847656 27.390625 4.957031 28.761719 4.957031 L 31.539062 4.957031 L 20 16.496094 L 8.460938 4.957031 L 11.238281 4.957031 C 12.609375 4.957031 13.71875 3.847656 13.71875 2.476562 C 13.71875 1.109375 12.609375 0 11.238281 0 L 2.476562 0 C 1.109375 0 0 1.109375 0 2.476562 L 0 11.238281 C 0 12.609375 1.109375 13.71875 2.476562 13.71875 C 3.847656 13.71875 4.957031 12.609375 4.957031 11.238281 L 4.957031 8.460938 L 16.496094 20 L 4.957031 31.539062 L 4.957031 28.761719 C 4.957031 27.390625 3.847656 26.28125 2.476562 26.28125 C 1.109375 26.28125 0 27.390625 0 28.761719 L 0 37.523438 C 0 38.890625 1.109375 40 2.476562 40 L 11.238281 40 C 12.609375 40 13.71875 38.890625 13.71875 37.523438 C 13.71875 36.152344 12.609375 35.042969 11.238281 35.042969 L 8.460938 35.042969 L 20 23.503906 L 31.539062 35.042969 L 28.761719 35.042969 C 27.390625 35.042969 26.28125 36.152344 26.28125 37.523438 C 26.28125 38.890625 27.390625 40 28.761719 40 L 37.523438 40 C 38.890625 40 40 38.890625 40 37.523438 L 40 28.761719 C 40 27.390625 38.890625 26.28125 37.523438 26.28125 C 36.152344 26.28125 35.042969 27.390625 35.042969 28.761719 L 35.042969 31.539062 L 23.503906 20 L 35.042969 8.460938 L 35.042969 11.238281 C 35.042969 12.609375 36.152344 13.71875 37.523438 13.71875 Z M 37.523438 13.71875 " />
+                </g>
+              </svg>
+            </div>
+            <img class="slider-image" data-src="./original/22-5-1958.png" src="./fachada/22-5-1958.jpg" alt="" />
+          </div>
+        </div>
+        <div id="14" class="slide-wrapper item">
+          <div class="image-wrapper">
+            <div class="timeline-wrapper align-center">
+              <div class="elipse"></div>
+              <span class="date">1960</span>
+            </div>
+            <div class="js-open-modal">
+              <?xml version="1.0" encoding="UTF-8"?>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px"
+                height="40px" viewBox="0 0 40 40" version="1.1">
+                <g id="surface1">
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
+                    d="M 37.523438 13.71875 C 38.890625 13.71875 40 12.609375 40 11.238281 L 40 2.476562 C 40 1.109375 38.890625 0 37.523438 0 L 28.761719 0 C 27.390625 0 26.28125 1.109375 26.28125 2.476562 C 26.28125 3.847656 27.390625 4.957031 28.761719 4.957031 L 31.539062 4.957031 L 20 16.496094 L 8.460938 4.957031 L 11.238281 4.957031 C 12.609375 4.957031 13.71875 3.847656 13.71875 2.476562 C 13.71875 1.109375 12.609375 0 11.238281 0 L 2.476562 0 C 1.109375 0 0 1.109375 0 2.476562 L 0 11.238281 C 0 12.609375 1.109375 13.71875 2.476562 13.71875 C 3.847656 13.71875 4.957031 12.609375 4.957031 11.238281 L 4.957031 8.460938 L 16.496094 20 L 4.957031 31.539062 L 4.957031 28.761719 C 4.957031 27.390625 3.847656 26.28125 2.476562 26.28125 C 1.109375 26.28125 0 27.390625 0 28.761719 L 0 37.523438 C 0 38.890625 1.109375 40 2.476562 40 L 11.238281 40 C 12.609375 40 13.71875 38.890625 13.71875 37.523438 C 13.71875 36.152344 12.609375 35.042969 11.238281 35.042969 L 8.460938 35.042969 L 20 23.503906 L 31.539062 35.042969 L 28.761719 35.042969 C 27.390625 35.042969 26.28125 36.152344 26.28125 37.523438 C 26.28125 38.890625 27.390625 40 28.761719 40 L 37.523438 40 C 38.890625 40 40 38.890625 40 37.523438 L 40 28.761719 C 40 27.390625 38.890625 26.28125 37.523438 26.28125 C 36.152344 26.28125 35.042969 27.390625 35.042969 28.761719 L 35.042969 31.539062 L 23.503906 20 L 35.042969 8.460938 L 35.042969 11.238281 C 35.042969 12.609375 36.152344 13.71875 37.523438 13.71875 Z M 37.523438 13.71875 " />
+                </g>
+              </svg>
+            </div>
+            <img class="slider-image" data-src="./original/20-7-1960.png" src="./fachada/20-7-1960.jpg" alt="" />
+          </div>
+        </div>
+        <div id="15" class="slide-wrapper item">
+          <div class="image-wrapper">
+            <div class="timeline-wrapper align-center">
+              <div class="elipse"></div>
+              <span class="date">1967</span>
+            </div>
+            <div class="js-open-modal">
+              <?xml version="1.0" encoding="UTF-8"?>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px"
+                height="40px" viewBox="0 0 40 40" version="1.1">
+                <g id="surface1">
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
+                    d="M 37.523438 13.71875 C 38.890625 13.71875 40 12.609375 40 11.238281 L 40 2.476562 C 40 1.109375 38.890625 0 37.523438 0 L 28.761719 0 C 27.390625 0 26.28125 1.109375 26.28125 2.476562 C 26.28125 3.847656 27.390625 4.957031 28.761719 4.957031 L 31.539062 4.957031 L 20 16.496094 L 8.460938 4.957031 L 11.238281 4.957031 C 12.609375 4.957031 13.71875 3.847656 13.71875 2.476562 C 13.71875 1.109375 12.609375 0 11.238281 0 L 2.476562 0 C 1.109375 0 0 1.109375 0 2.476562 L 0 11.238281 C 0 12.609375 1.109375 13.71875 2.476562 13.71875 C 3.847656 13.71875 4.957031 12.609375 4.957031 11.238281 L 4.957031 8.460938 L 16.496094 20 L 4.957031 31.539062 L 4.957031 28.761719 C 4.957031 27.390625 3.847656 26.28125 2.476562 26.28125 C 1.109375 26.28125 0 27.390625 0 28.761719 L 0 37.523438 C 0 38.890625 1.109375 40 2.476562 40 L 11.238281 40 C 12.609375 40 13.71875 38.890625 13.71875 37.523438 C 13.71875 36.152344 12.609375 35.042969 11.238281 35.042969 L 8.460938 35.042969 L 20 23.503906 L 31.539062 35.042969 L 28.761719 35.042969 C 27.390625 35.042969 26.28125 36.152344 26.28125 37.523438 C 26.28125 38.890625 27.390625 40 28.761719 40 L 37.523438 40 C 38.890625 40 40 38.890625 40 37.523438 L 40 28.761719 C 40 27.390625 38.890625 26.28125 37.523438 26.28125 C 36.152344 26.28125 35.042969 27.390625 35.042969 28.761719 L 35.042969 31.539062 L 23.503906 20 L 35.042969 8.460938 L 35.042969 11.238281 C 35.042969 12.609375 36.152344 13.71875 37.523438 13.71875 Z M 37.523438 13.71875 " />
+                </g>
+              </svg>
+            </div>
+            <img class="slider-image" data-src="./original/30-3-1967.png" src="./fachada/30-3-1967.jpg" alt="" />
+          </div>
+        </div>
+        <div id="16" class="slide-wrapper item">
+          <div class="image-wrapper">
+            <div class="timeline-wrapper align-center">
+              <div class="elipse"></div>
+              <span class="date">1979</span>
+            </div>
+            <div class="js-open-modal">
+              <?xml version="1.0" encoding="UTF-8"?>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px"
+                height="40px" viewBox="0 0 40 40" version="1.1">
+                <g id="surface1">
+                  <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;"
+                    d="M 37.523438 13.71875 C 38.890625 13.71875 40 12.609375 40 11.238281 L 40 2.476562 C 40 1.109375 38.890625 0 37.523438 0 L 28.761719 0 C 27.390625 0 26.28125 1.109375 26.28125 2.476562 C 26.28125 3.847656 27.390625 4.957031 28.761719 4.957031 L 31.539062 4.957031 L 20 16.496094 L 8.460938 4.957031 L 11.238281 4.957031 C 12.609375 4.957031 13.71875 3.847656 13.71875 2.476562 C 13.71875 1.109375 12.609375 0 11.238281 0 L 2.476562 0 C 1.109375 0 0 1.109375 0 2.476562 L 0 11.238281 C 0 12.609375 1.109375 13.71875 2.476562 13.71875 C 3.847656 13.71875 4.957031 12.609375 4.957031 11.238281 L 4.957031 8.460938 L 16.496094 20 L 4.957031 31.539062 L 4.957031 28.761719 C 4.957031 27.390625 3.847656 26.28125 2.476562 26.28125 C 1.109375 26.28125 0 27.390625 0 28.761719 L 0 37.523438 C 0 38.890625 1.109375 40 2.476562 40 L 11.238281 40 C 12.609375 40 13.71875 38.890625 13.71875 37.523438 C 13.71875 36.152344 12.609375 35.042969 11.238281 35.042969 L 8.460938 35.042969 L 20 23.503906 L 31.539062 35.042969 L 28.761719 35.042969 C 27.390625 35.042969 26.28125 36.152344 26.28125 37.523438 C 26.28125 38.890625 27.390625 40 28.761719 40 L 37.523438 40 C 38.890625 40 40 38.890625 40 37.523438 L 40 28.761719 C 40 27.390625 38.890625 26.28125 37.523438 26.28125 C 36.152344 26.28125 35.042969 27.390625 35.042969 28.761719 L 35.042969 31.539062 L 23.503906 20 L 35.042969 8.460938 L 35.042969 11.238281 C 35.042969 12.609375 36.152344 13.71875 37.523438 13.71875 Z M 37.523438 13.71875 " />
+                </g>
+              </svg>
+            </div>
+            <img class="slider-image" data-src="./original/12-8-1979.png" src="./fachada/12-8-1979.jpg" alt="" />
+          </div>
         </div>
       </div>
-    </article>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
-      integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+      <div class="description-wrapper">
+        <span id="ano" class="description-date align-center">1934</span>
+        <h2 id="titulo" class="title">Onze pessoas presas num Catimbó</h2>
+        <p id="resumo" class="description">
+          Onze pessoas foram presas na casa de Dona Maria de Holanda Alvez
+          quando esta realizada uma cerimonia de cura de uma amiga. A policia
+          recebeu a denuncia do um vizinho e foi ao local onde todos foram
+          presos e conduzidos a delegacia junto com os pertences e apetrechos
+          associados a pratica. Vale ressaltar que nessa materia o reporter
+          associa a religião a uma "altivez pagã, filha da ingnorância e do
+          desespeêro".
+        </p>
+        <p class="description-info">
+          <strong>Local: </strong>
+          <span id="localizacao">Arraial Moura Brasil</span><br />
+          <strong>Religião: </strong><span id="religiao">Candomblé/Umbanda/Macumba</span> <br />
+          <strong>Nº de Vítimas: </strong><span id="vitimas">11</span>
+          <br />
+          <strong> Raça das vítimas: </strong><span id="raca">Não identificado</span> <br />
+        </p>
+      </div>
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <!-- The Close Button -->
+      <span class="close">&times;</span>
+      <!-- Modal Content (The Image) -->
+      <img class="modal-content" id="modal-img">
+    </div>
+  </article>
 
-    <script>
-      $(document).ready(function () {
-        $(".owl-carousel").owlCarousel({
-          loop: false,
-          center: true,
-          nav: true,
-          navText: [
-            `<svg id="Grupo_7780" data-name="Grupo 7780" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+    integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    $(document).ready(function () {
+      $(".owl-carousel").owlCarousel({
+        loop: false,
+        center: true,
+        nav: true,
+        navText: [
+          `<svg id="Grupo_7780" data-name="Grupo 7780" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
             <g id="Grupo_5624" data-name="Grupo 5624">
               <circle id="Elipse_319-2" class="icon-circle" data-name="Elipse 319-2" cx="20" cy="20" r="20" fill="#fff"/>
               <g id="Grupo_5607" data-name="Grupo 5607" transform="translate(13.666 11.498)">
@@ -452,7 +697,7 @@
               </g>
             </g>
           </svg>`,
-            `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+          `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
             <g id="Grupo_7784" data-name="Grupo 7784" transform="translate(-210 -511)">
               <g id="Grupo_5624" data-name="Grupo 5624" transform="translate(-50 -70)">
                 <circle id="Elipse_319-2" class="icon-circle" data-name="Elipse 319-2" cx="20" cy="20" r="20" transform="translate(260 581)" fill="#fff"/>
@@ -462,303 +707,320 @@
               </g>
             </g>
           </svg>`,
-          ],
-          navSpeed: 1000,
-          responsive: {
-            0: {
-              items: 1.5,
-            },
-            600: {
-              items: 3,
-            },
-            1000: {
-              items: 3.3,
-            },
+        ],
+        navSpeed: 1000,
+        responsive: {
+          0: {
+            items: 1.5,
           },
-        });
-        $(".owl-nav").append("<div class='line'></div>");
+          600: {
+            items: 3,
+          },
+          1000: {
+            items: 3.3,
+          },
+        },
       });
-    </script>
+      $(".owl-nav").append("<div class='line'></div>");
+    });
+  </script>
 
-    <script>
-      // No design que a Maria me mandou somente as imagens ficam visíveis
-      // Como tive que usar o Owl Carousel para o slide, por questões de compatibilidade
-      // tive que gerar o texto de cada jornal de uma forma dinamica
-      // pois não descobri uma forma de fazer esse efeito com o Owl
-      $(document).ready(function () {
-        const definitivas = [
-          {
-            id: 1,
-            ano: "1934",
-            titulo: "Onze pessoas presas num Catimbó",
-            resumo:
-              'Onze pessoas foram presas na casa de Dona Maria de Holanda Alvez quando esta realizada uma cerimonia de cura de uma amiga. A policia recebeu a denuncia do um vizinho e foi ao local onde todos foram presos e conduzidos a delegacia junto com os pertences e apetrechos associados a pratica. Vale ressaltar que nessa materia o reporter associa a religião a uma "altivez pagã, filha da ingnorância e do desespeêro".',
-            localizacao: "Arraial Moura Brasil",
-            caderno: "Primeiro Caderno",
-            religiao: "Candomblé/Umbanda/Macumba",
-            vitimas: "11",
-            raca: "Não Identificado",
-            condenacoes: "Foram presos as 11 pessoas que estavam no local",
-          },
+  <script>
+    // No design que a Maria me mandou somente as imagens ficam visíveis
+    // Como tive que usar o Owl Carousel para o slide, por questões de compatibilidade
+    // tive que gerar o texto de cada jornal de uma forma dinamica
+    // pois não descobri uma forma de fazer esse efeito com o Owl
+    $(document).ready(function () {
+      const definitivas = [
+        {
+          id: 1,
+          ano: "1934",
+          titulo: "Onze pessoas presas num Catimbó",
+          resumo:
+            'Onze pessoas foram presas na casa de Dona Maria de Holanda Alvez quando esta realizada uma cerimonia de cura de uma amiga. A policia recebeu a denuncia do um vizinho e foi ao local onde todos foram presos e conduzidos a delegacia junto com os pertences e apetrechos associados a pratica. Vale ressaltar que nessa materia o reporter associa a religião a uma "altivez pagã, filha da ingnorância e do desespeêro".',
+          localizacao: "Arraial Moura Brasil",
+          caderno: "Primeiro Caderno",
+          religiao: "Candomblé/Umbanda/Macumba",
+          vitimas: "11",
+          raca: "Não Identificado",
+          condenacoes: "Foram presos as 11 pessoas que estavam no local",
+        },
 
-          {
-            id: 2,
-            ano: "1935",
-            titulo:
-              "A Macumba em Fortaleza - Um antro de exploração á rua das trincheiras",
-            resumo:
-              'Reportagem denuncia uma suposta casa de feitiçaria conduzida por um homem chamado de Irmão Luiz (identificado como da raça negra na reportagem), que teria um jovem de 15 anos, branco, como seu serviçal sendo punido com chibatadas pelo Irmão Luiz. O texto não deixa claro a religião. Ora cita o Candomblé, hora cita que o Irmão Luiz lê os livros de Alan Kardec e aplica passes em nome de Jesus e da Virgem Maria. E ao final pede que a policia tome providencias em fechar o local, classificado pelo reporter como um "antro de perdição na cidade".',
-            localizacao: "Rua Conselheiro Liberato Barroso, 847 - Centro",
-            caderno: "Primeiro Caderno",
-            religiao: "Candomblé/Umbanda/Macumba",
-            vitimas: "1",
-            raca: "Negra",
-            condenacoes: "Não",
-          },
+        {
+          id: 2,
+          ano: "1935",
+          titulo:
+            "A Macumba em Fortaleza - Um antro de exploração á rua das trincheiras",
+          resumo:
+            'Reportagem denuncia uma suposta casa de feitiçaria conduzida por um homem chamado de Irmão Luiz (identificado como da raça negra na reportagem), que teria um jovem de 15 anos, branco, como seu serviçal sendo punido com chibatadas pelo Irmão Luiz. O texto não deixa claro a religião. Ora cita o Candomblé, hora cita que o Irmão Luiz lê os livros de Alan Kardec e aplica passes em nome de Jesus e da Virgem Maria. E ao final pede que a policia tome providencias em fechar o local, classificado pelo reporter como um "antro de perdição na cidade".',
+          localizacao: "Rua Conselheiro Liberato Barroso, 847 - Centro",
+          caderno: "Primeiro Caderno",
+          religiao: "Candomblé/Umbanda/Macumba",
+          vitimas: "1",
+          raca: "Negra",
+          condenacoes: "Não",
+        },
 
-          {
-            id: 3,
-            ano: "1935",
-            titulo:
-              "A Macumba em Fortaleza - Pregadores da Doutrina de Alan Kardek",
-            resumo:
-              "Vizinho denuncia o que a reportagem identifica como um congresso de feitceiros qeu estarai sendo realizado na Vila Monteiro. O barulho dos cantigos e batidas estarai incomodando os vizinhos. A policia foi acionada e as pessoas foram presas. Na reportagem cita o homem identificado como Irmão Luiz e novamente fala sobre o Espiritismo de Alan Kardek como sendo parte de Macumba",
-            localizacao: "Vila Monteiro / Barra do Ceará",
-            caderno: "Primeiro Caderno",
-            religiao: "Candomblé / Espiritismo",
-            vitimas: "Nao especifica",
-            raca: "Negra",
-            condenacoes: "Não especificado",
-          },
+        {
+          id: 3,
+          ano: "1935",
+          titulo:
+            "A Macumba em Fortaleza - Pregadores da Doutrina de Alan Kardek",
+          resumo:
+            "Vizinho denuncia o que a reportagem identifica como um congresso de feitceiros qeu estarai sendo realizado na Vila Monteiro. O barulho dos cantigos e batidas estarai incomodando os vizinhos. A policia foi acionada e as pessoas foram presas. Na reportagem cita o homem identificado como Irmão Luiz e novamente fala sobre o Espiritismo de Alan Kardek como sendo parte de Macumba",
+          localizacao: "Vila Monteiro / Barra do Ceará",
+          caderno: "Primeiro Caderno",
+          religiao: "Candomblé / Espiritismo",
+          vitimas: "Nao especifica",
+          raca: "Negra",
+          condenacoes: "Não especificado",
+        },
 
-          {
-            id: 4,
-            ano: "1938",
-            titulo:
-              "Não tenho mais esperanças de ver meu Filho - O cel. Pretinho está disiludido de que Onofre seja encontrado",
-            resumo:
-              "Um homem identificado como Negro Luiz é acusado de realizar Macumba em seu Botequim e de ter por meio de magia ocasionado morte de uma senhora por vingança. O titulo da reportagem falado desaparecimento de uma criança e que o pai não tinha mais esperanças de encontrar-la, porém parece não haver relação com o Negro Luiz ou insinua que o homem teria alguma ligação.",
-            localizacao: "Praia Formosa",
-            caderno: "Primeiro Caderno",
-            religiao: "Candomblé/Umbanda/Macumba",
-            vitimas: "Nao especifica",
-            raca: "Negra",
-            condenacoes: "Não especificado",
-          },
-          {
-            id: 5,
-            ano: "1939",
-            titulo: "Levanta-te Mineiro",
-            resumo:
-              "Oitenta pessoas assitiam a Macumba quando a Policia chegou. Foram efetuadas varias prisões.",
-            localizacao: "Pirambu",
-            caderno: "Primeiro Caderno",
-            religiao: "Candomblé/Umbanda/Macumba",
-            vitimas: "Varias pessoas presas",
-            raca: "Negra",
-            condenacoes: "Não especificado",
-          },
-          {
-            id: 6,
-            ano: "1939",
-            titulo: "Gente da Elite frequenta as sessões em Pirambu",
-            resumo:
-              '"Gente da elite de Fortaleza vai em automoveis de luxo, oferecer presentes a Mãe de Santo e receber os castigos corporais infligidos pelo ardiloso"',
-            localizacao: "Pirambu",
-            caderno: "Primeiro Caderno",
-            religiao: "Candomblé/Umbanda/Macumba",
-            vitimas: "Nao especifica",
-            raca: "Todas",
-            condenacoes: "Não especificado",
-          },
-          {
-            id: 7,
-            ano: "1944",
-            titulo: "Macumbeiros em ação no Arraial Moura Brasil",
-            resumo:
-              "Preso homem de 20 anos que afirmava ter curado cerca de 500 pessoas. Identificado como macumbeiro atuante nas periferias de Fortaleza. Foi preso acusado de cobrar importancias de 200 a 500 cruzeiros pelas curas, o que ele nega.",
-            localizacao: "Arraial Moura Brasil",
-            caderno: "Primeiro Caderno",
-            religiao: "Candomblé/Umbanda/Macumba",
-            vitimas: "1",
-            raca: "Não Identificado",
-            condenacoes: "Foi preso",
-          },
-          {
-            id: 8,
-            ano: "1949",
-            titulo: "Catimbó no Cemitério São João Batista",
-            resumo:
-              "Coveiros do cemiterio encontraram obejtos que seriam de trabalhos de macumba",
-            localizacao: "Centro",
-            caderno: "Primeiro Caderno",
-            religiao: "Candomblé/Umbanda/Macumba",
-            vitimas: "Nao especifica",
-            raca: "Não Identificado",
-            condenacoes: "Não especificado",
-          },
-          {
-            id: 9,
-            ano: "1950",
-            titulo: "Macumba na Barra do Ceará",
-            resumo:
-              'Investigador amador descobre uma "ingrizia" com todas as caracteristicas de macumba. A policia está empenhada em apurar o fato.',
-            localizacao: "Barra do Ceará",
-            caderno: "Primeiro Caderno",
-            religiao: "Candomblé/Umbanda/Macumba",
-            vitimas: "Nao especifica",
-            raca: "Não Identificado",
-            condenacoes: "Não especificado",
-          },
-          {
-            id: 10,
-            ano: "1951",
-            titulo: "Urubatan de Deus é o meu guia",
-            resumo:
-              "Centenas de pessoas comparecem diariamente a residencia do  Sr. João Almeida que cura tuberculose com leite e laranja e diz-se inimigo rancoroso dos macumbeiros",
-            localizacao: "Porangabussu",
-            caderno: "Primeiro Caderno",
-            religiao: "Não especificada",
-            vitimas: "Nao especifica",
-            raca: "Não Identificado",
-            condenacoes: "Não especificado",
-          },
-          {
-            id: 11,
-            ano: "1951",
-            titulo: "Ossada humana encontrada numa calçada da rua S. Paulo",
-            resumo:
-              '"Isso é macumba" dia ao reporter um operario - Desperta curiosidade o fato - A policia não tomou conhecimento',
-            localizacao: "Centro",
-            caderno: "Primeiro Caderno",
-            religiao: "Candomblé/Umbanda/Macumba",
-            vitimas: "Nao especifica",
-            raca: "Não Identificado",
-            condenacoes: "Não especificado",
-          },
-          {
-            id: 12,
-            ano: "1957",
-            titulo: "Surpreendida pela policia um Macumba em plena função",
-            resumo:
-              '"Presa em flagrante a macumbeira Maria Luisa de Lima - Apreendidos diversos apetrechos e fotografias de pessoas conhecidas - Curiosas receitas para matar"',
-            localizacao: "São Gerardo",
-            caderno: "Primeiro Caderno",
-            religiao: "Candomblé/Umbanda/Macumba",
-            vitimas: "1",
-            raca: "Não Identificado",
-            condenacoes: "Não especificado",
-          },
-          {
-            id: 13,
-            ano: "1958",
-            titulo: "Diz que não há macumba em sua casa",
-            resumo:
-              "Comparece a redação do OPOVO uma senhora afim de desmentir acusação publicada de que em sua residencia funcionaria um terreiro de macumba. A mulher se diz vitima de calunia e inveja. A polícia foi notificada.",
-            localizacao: "Moura Brasil",
-            caderno: "Primeiro Caderno",
-            religiao: "Candomblé/Umbanda/Macumba",
-            vitimas: "1",
-            raca: "Não Identificado",
-            condenacoes: "Não especificado",
-          },
-          {
-            id: 14,
-            ano: "1960",
-            titulo: "Ogum e seus adoradores foram parar no xadrez",
-            resumo:
-              "Um terreiro de macumba foi dissolvido pelas autoridades do distrito policial. Varios objetos próprios da prática foram encontrados",
-            localizacao: "Bela Vista",
-            caderno: "Primeiro Caderno",
-            religiao: "Candomblé/Umbanda/Macumba",
-            vitimas: "3",
-            raca: "Não Identificado",
-            condenacoes: "Não especificado",
-          },
-          {
-            id: 15,
-            ano: "1967",
-            titulo: "Macumbeiro morto misteriosamente com 18 facadas",
-            resumo:
-              "Homem identificado como Macumbeiro é encontrado morto no matagal na Barra do Ceará com 18 facadas e crime é tratado como mistério",
-            localizacao: "Barra do Ceará",
-            caderno: "Primeiro Caderno",
-            religiao: "Candomblé/Umbanda/Macumba",
-            vitimas: "1",
-            raca: "Não Identificado",
-            condenacoes: "Não especificado",
-          },
-          {
-            id: 16,
-            ano: "1979",
-            titulo: 'Um "despacho" completo no caminho do Prefeito',
-            resumo:
-              "A macumba foi encontrada pelo prefeito, assessores e vereadores, no canteiro de obras do Parque do Cocó",
-            localizacao: "Cocó",
-            caderno: "Primeiro Caderno",
-            religiao: "Candomblé/Umbanda/Macumba",
-            vitimas: "Não houve",
-            raca: "Não Identificado",
-            condenacoes: "Não especificado",
-          },
-        ];
+        {
+          id: 4,
+          ano: "1938",
+          titulo:
+            "Não tenho mais esperanças de ver meu Filho - O cel. Pretinho está disiludido de que Onofre seja encontrado",
+          resumo:
+            "Um homem identificado como Negro Luiz é acusado de realizar Macumba em seu Botequim e de ter por meio de magia ocasionado morte de uma senhora por vingança. O titulo da reportagem falado desaparecimento de uma criança e que o pai não tinha mais esperanças de encontrar-la, porém parece não haver relação com o Negro Luiz ou insinua que o homem teria alguma ligação.",
+          localizacao: "Praia Formosa",
+          caderno: "Primeiro Caderno",
+          religiao: "Candomblé/Umbanda/Macumba",
+          vitimas: "Nao especifica",
+          raca: "Negra",
+          condenacoes: "Não especificado",
+        },
+        {
+          id: 5,
+          ano: "1939",
+          titulo: "Levanta-te Mineiro",
+          resumo:
+            "Oitenta pessoas assitiam a Macumba quando a Policia chegou. Foram efetuadas constias prisões.",
+          localizacao: "Pirambu",
+          caderno: "Primeiro Caderno",
+          religiao: "Candomblé/Umbanda/Macumba",
+          vitimas: "constias pessoas presas",
+          raca: "Negra",
+          condenacoes: "Não especificado",
+        },
+        {
+          id: 6,
+          ano: "1939",
+          titulo: "Gente da Elite frequenta as sessões em Pirambu",
+          resumo:
+            '"Gente da elite de Fortaleza vai em automoveis de luxo, oferecer presentes a Mãe de Santo e receber os castigos corporais infligidos pelo ardiloso"',
+          localizacao: "Pirambu",
+          caderno: "Primeiro Caderno",
+          religiao: "Candomblé/Umbanda/Macumba",
+          vitimas: "Nao especifica",
+          raca: "Todas",
+          condenacoes: "Não especificado",
+        },
+        {
+          id: 7,
+          ano: "1944",
+          titulo: "Macumbeiros em ação no Arraial Moura Brasil",
+          resumo:
+            "Preso homem de 20 anos que afirmava ter curado cerca de 500 pessoas. Identificado como macumbeiro atuante nas periferias de Fortaleza. Foi preso acusado de cobrar importancias de 200 a 500 cruzeiros pelas curas, o que ele nega.",
+          localizacao: "Arraial Moura Brasil",
+          caderno: "Primeiro Caderno",
+          religiao: "Candomblé/Umbanda/Macumba",
+          vitimas: "1",
+          raca: "Não Identificado",
+          condenacoes: "Foi preso",
+        },
+        {
+          id: 8,
+          ano: "1949",
+          titulo: "Catimbó no Cemitério São João Batista",
+          resumo:
+            "Coveiros do cemiterio encontraram obejtos que seriam de trabalhos de macumba",
+          localizacao: "Centro",
+          caderno: "Primeiro Caderno",
+          religiao: "Candomblé/Umbanda/Macumba",
+          vitimas: "Nao especifica",
+          raca: "Não Identificado",
+          condenacoes: "Não especificado",
+        },
+        {
+          id: 9,
+          ano: "1950",
+          titulo: "Macumba na Barra do Ceará",
+          resumo:
+            'Investigador amador descobre uma "ingrizia" com todas as caracteristicas de macumba. A policia está empenhada em apurar o fato.',
+          localizacao: "Barra do Ceará",
+          caderno: "Primeiro Caderno",
+          religiao: "Candomblé/Umbanda/Macumba",
+          vitimas: "Nao especifica",
+          raca: "Não Identificado",
+          condenacoes: "Não especificado",
+        },
+        {
+          id: 10,
+          ano: "1951",
+          titulo: "Urubatan de Deus é o meu guia",
+          resumo:
+            "Centenas de pessoas comparecem diariamente a residencia do  Sr. João Almeida que cura tuberculose com leite e laranja e diz-se inimigo rancoroso dos macumbeiros",
+          localizacao: "Porangabussu",
+          caderno: "Primeiro Caderno",
+          religiao: "Não especificada",
+          vitimas: "Nao especifica",
+          raca: "Não Identificado",
+          condenacoes: "Não especificado",
+        },
+        {
+          id: 11,
+          ano: "1951",
+          titulo: "Ossada humana encontrada numa calçada da rua S. Paulo",
+          resumo:
+            '"Isso é macumba" dia ao reporter um operario - Desperta curiosidade o fato - A policia não tomou conhecimento',
+          localizacao: "Centro",
+          caderno: "Primeiro Caderno",
+          religiao: "Candomblé/Umbanda/Macumba",
+          vitimas: "Nao especifica",
+          raca: "Não Identificado",
+          condenacoes: "Não especificado",
+        },
+        {
+          id: 12,
+          ano: "1957",
+          titulo: "Surpreendida pela policia um Macumba em plena função",
+          resumo:
+            '"Presa em flagrante a macumbeira Maria Luisa de Lima - Apreendidos diversos apetrechos e fotografias de pessoas conhecidas - Curiosas receitas para matar"',
+          localizacao: "São Gerardo",
+          caderno: "Primeiro Caderno",
+          religiao: "Candomblé/Umbanda/Macumba",
+          vitimas: "1",
+          raca: "Não Identificado",
+          condenacoes: "Não especificado",
+        },
+        {
+          id: 13,
+          ano: "1958",
+          titulo: "Diz que não há macumba em sua casa",
+          resumo:
+            "Comparece a redação do OPOVO uma senhora afim de desmentir acusação publicada de que em sua residencia funcionaria um terreiro de macumba. A mulher se diz vitima de calunia e inveja. A polícia foi notificada.",
+          localizacao: "Moura Brasil",
+          caderno: "Primeiro Caderno",
+          religiao: "Candomblé/Umbanda/Macumba",
+          vitimas: "1",
+          raca: "Não Identificado",
+          condenacoes: "Não especificado",
+        },
+        {
+          id: 14,
+          ano: "1960",
+          titulo: "Ogum e seus adoradores foram parar no xadrez",
+          resumo:
+            "Um terreiro de macumba foi dissolvido pelas autoridades do distrito policial. constios objetos próprios da prática foram encontrados",
+          localizacao: "Bela Vista",
+          caderno: "Primeiro Caderno",
+          religiao: "Candomblé/Umbanda/Macumba",
+          vitimas: "3",
+          raca: "Não Identificado",
+          condenacoes: "Não especificado",
+        },
+        {
+          id: 15,
+          ano: "1967",
+          titulo: "Macumbeiro morto misteriosamente com 18 facadas",
+          resumo:
+            "Homem identificado como Macumbeiro é encontrado morto no matagal na Barra do Ceará com 18 facadas e crime é tratado como mistério",
+          localizacao: "Barra do Ceará",
+          caderno: "Primeiro Caderno",
+          religiao: "Candomblé/Umbanda/Macumba",
+          vitimas: "1",
+          raca: "Não Identificado",
+          condenacoes: "Não especificado",
+        },
+        {
+          id: 16,
+          ano: "1979",
+          titulo: 'Um "despacho" completo no caminho do Prefeito',
+          resumo:
+            "A macumba foi encontrada pelo prefeito, assessores e vereadores, no canteiro de obras do Parque do Cocó",
+          localizacao: "Cocó",
+          caderno: "Primeiro Caderno",
+          religiao: "Candomblé/Umbanda/Macumba",
+          vitimas: "Não houve",
+          raca: "Não Identificado",
+          condenacoes: "Não especificado",
+        },
+      ];
 
-        const config = { attributes: true };
-        const observers = [];
+      const config = { attributes: true };
+      const observers = [];
 
-        function setObserver(target, index) {
-          const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-              console.log(mutation);
-              if ($(target).hasClass("center")) {
-                const jornalId = $(target).children().attr("id");
-                getMateria(jornalId);
-              }
-            });
-          });
-          observer.observe(target, config);
-          // para caso precise desconectar o observer
-          observers.push({ [index]: observer });
-        }
-
-        $(".owl-item").each((index, el) => {
-          setObserver(el, index);
-        });
-
-        function getMateria(id) {
-          for (materia of definitivas) {
-            if (materia.id == id) {
-              const {
-                titulo,
-                ano,
-                resumo,
-                localizacao,
-                vitimas,
-                religiao,
-                raca,
-              } = materia;
-              populateMateria(materia);
+      function setObserver(target, index) {
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if ($(target).hasClass("center")) {
+              const jornalId = $(target).children().attr("id");
+              getMateria(jornalId);
             }
+          });
+        });
+        observer.observe(target, config);
+        observers.push({ [index]: observer });
+      }
+
+      $(".owl-item").each((index, el) => {
+        setObserver(el, index);
+      });
+
+      function getMateria(id) {
+        for (materia of definitivas) {
+          if (materia.id == id) {
+            const {
+              titulo,
+              ano,
+              resumo,
+              localizacao,
+              vitimas,
+              religiao,
+              raca,
+            } = materia;
+            populateMateria(materia);
           }
         }
-        function populateMateria({
-          titulo,
-          ano,
-          resumo,
-          localizacao,
-          vitimas,
-          religiao,
-          raca,
-        }) {
-          document.querySelector("#titulo").textContent = titulo;
-          document.querySelector("#ano").textContent = ano;
-          document.querySelector("#resumo").textContent = resumo;
-          document.querySelector("#localizacao").textContent = localizacao;
-          document.querySelector("#vitimas").textContent = vitimas;
-          document.querySelector("#religiao").textContent = religiao;
-          document.querySelector("#raca").textContent = raca;
-        }
-      });
-    </script>
-  </body>
+      }
+      function populateMateria({
+        titulo,
+        ano,
+        resumo,
+        localizacao,
+        vitimas,
+        religiao,
+        raca,
+      }) {
+        document.querySelector("#titulo").textContent = titulo;
+        document.querySelector("#ano").textContent = ano;
+        document.querySelector("#resumo").textContent = resumo;
+        document.querySelector("#localizacao").textContent = localizacao;
+        document.querySelector("#vitimas").textContent = vitimas;
+        document.querySelector("#religiao").textContent = religiao;
+        document.querySelector("#raca").textContent = raca;
+      }
+    });
+  </script>
+  <script>
+    const modal = document.getElementById("myModal");
+    const openModal = document.querySelectorAll(".js-open-modal");
+    const modalImg = document.getElementById("modal-img");
+
+    openModal.forEach((item) => {
+      const originalImgSrc = $(item).next().attr('data-src');
+
+      $(item).click(() => {
+        modal.style.display = "block";
+        modalImg.src = originalImgSrc;
+      })
+
+    })
+
+    $(".close").click(() => modal.style.display = "none");
+
+  </script>
+</body>
+
 </html>
