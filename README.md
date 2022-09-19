@@ -21,8 +21,4 @@ Em caso de dúvidas ou sugestões, entre em contato: **datadoc@opovodigital.com.
  ## Entre em contato com a Central DATADOC !
 
  Em caso de dúvidas, sugestões, denúncias ou outros apontamentos, entre em contato: [datadoc@opovodigital.com](mailto:datadoc@opovodigital.com)	
-![enter image description here](https://user-images.githubusercontent.com/43644247/146580519-72b35450-f95d-4753-a874-54451625957e.png)
-
- 
-
-
+![Marca da Central de Jornalismo de Dados do Jornal O POVO- DATADOC](/assets/datadoc_logo_cor.png)
